@@ -11,9 +11,13 @@
       </div>
       <div class="navbar-menu" :class="active">
         <div class="navbar-start">
-          <router-link class="navbar-item" active-class="is-active" to="/" exact>Home</router-link>
-          <router-link class="navbar-item" active-class="is-active" to="/about">About</router-link>
-          <router-link class="navbar-item" active-class="is-active" to="/blog-home">Blog</router-link>
+          <router-link v-for="(link, index) in routerLinks"
+           :key="index"
+           class="navbar-item"
+           active-class="is-active"
+           :to="link.link" exact
+           @click.native="closeNav"
+           >{{ link.text }}</router-link>
         </div>
         <div class="navbar-end">
           <router-link class="navbar-item" to="/login">Login</router-link>
@@ -28,7 +32,11 @@
     name: 'Navbar',
     data() {
       return {
-
+        routerLinks: [
+          {link: '/', text: 'Home'},
+          {link: '/about', text: 'About'},
+          {link: '/blog-home', text: 'Blog'}
+        ]
       }
     },
     computed: {
@@ -39,6 +47,9 @@
     methods: {
       toggleNav() {
         this.$store.commit('toggleNav')
+      },
+      closeNav() {
+        this.$store.commit('closeNav')
       }
     }
   }
