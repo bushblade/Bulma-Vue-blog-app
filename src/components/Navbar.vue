@@ -11,9 +11,9 @@
       </div>
       <div class="navbar-menu" :class="active">
         <div class="navbar-start">
-          <router-link class="navbar-item" to="/">Home</router-link>
-          <router-link class="navbar-item" to="/about">About</router-link>
-          <router-link class="navbar-item" to="/blog-home">Blog</router-link>
+          <router-link class="navbar-item" active-class="is-active" to="/" exact>Home</router-link>
+          <router-link class="navbar-item" active-class="is-active" to="/about">About</router-link>
+          <router-link class="navbar-item" active-class="is-active" to="/blog-home">Blog</router-link>
         </div>
         <div class="navbar-end">
           <router-link class="navbar-item" to="/login">Login</router-link>
