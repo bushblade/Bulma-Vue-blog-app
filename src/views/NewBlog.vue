@@ -6,11 +6,13 @@
       </div>
     </div>
     <AuthorDateTitle />
+    <TitleImage />
   </div>
 </template>
 
 <script>
   import AuthorDateTitle from '@/components/NewBlog/AuthorDateTitle'
+  import TitleImage from '@/components/NewBlog/TitleImage'
 
   export default {
     name: 'NewBlog',
@@ -20,7 +22,8 @@
       }
     },
     components: {
-      AuthorDateTitle
+      AuthorDateTitle,
+      TitleImage
     }
   }
 </script>

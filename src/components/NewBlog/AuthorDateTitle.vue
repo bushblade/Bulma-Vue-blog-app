@@ -24,17 +24,26 @@
         return [{
             label: 'Author',
             val: blog.author,
-            fn: (e) => commit('update', {target: 'author', value: e.target.value})
+            fn: (e) => commit('update', {
+              target: 'author',
+              value: e.target.value
+            })
           },
           {
             label: 'Date',
             val: blog.date,
-            fn: (e) => commit('update', {target: 'date', value: e.target.value})
+            fn: (e) => commit('update', {
+              target: 'date',
+              value: e.target.value
+            })
           },
           {
             label: 'Title',
             val: blog.title,
-            fn: (e) => commit('update', {target: 'title', value: e.target.value})
+            fn: (e) => commit('update', {
+              target: 'title',
+              value: e.target.value
+            })
           }
         ]
       }
@@ -45,6 +54,11 @@
           'is-danger': field.val.feedback,
           'is-success': !field.val.feedback && field.val.value
         }
+      }
+    },
+    created(){
+      if (!this.$store.state.newBlog.date.value){
+        this.$store.commit('defaultDate')
       }
     }
   }

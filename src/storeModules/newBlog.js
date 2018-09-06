@@ -1,3 +1,5 @@
+import { stat } from "fs";
+
 export const newBlog = {
   state: {
     author: {
@@ -33,6 +35,11 @@ export const newBlog = {
   mutations: {
     update: (state, payload) => {
       state[payload.target].value = payload.value
+    },
+    defaultDate: state => {
+      if (!state.date.value){
+        state.date.value = new Date().toDateString()
+      }
     }
   },
   actions: {
