@@ -31,7 +31,17 @@ export const newBlog = {
     slug: null
   },
   mutations: {
-
+    updateAuthor: (state, payload) => {
+      state.author.feedback = null
+      state.author.value = payload
+    },
+    updateDate: (state, payload) => {
+      state.date.value = payload
+    },
+    updateTitle: (state, payload) => {
+      state.title.feedback = null
+      state.title.value = payload
+    }
   },
   actions: {
 
