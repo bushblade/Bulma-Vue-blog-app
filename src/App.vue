@@ -21,7 +21,9 @@
     },
     methods: {
       closeNav() {
-        this.$store.commit('closeNav')
+        if (this.$store.state.navstate.navOpen){
+          this.$store.commit('closeNav')
+        }
       }
     }
 
