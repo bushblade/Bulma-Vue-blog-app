@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-10 is-offset-1" v-if="blog">
-        <img :src="blog.titleImage" :alt="blog.title">
+        <img :src="blog.titleImage">
       </div>
     </div>
     <div class="columns blog-content">
@@ -45,9 +45,6 @@
 </script>
 
 <style>
-  .blog-content {
-    margin-top: -200px;
-  }
   .blog-content p {
     margin: 2em;
   }

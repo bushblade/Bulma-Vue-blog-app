@@ -41,7 +41,7 @@
     },
     computed: {
       active() {
-        return this.$store.state.navOpen ? 'is-active' : ''
+        return this.$store.state.navstate.navOpen ? 'is-active' : ''
       }
     },
     methods: {
