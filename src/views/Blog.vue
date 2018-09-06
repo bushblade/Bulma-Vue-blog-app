@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container"  v-if="blog">
     <div class="columns">
-      <div class="column is-10 is-offset-1" v-if="blog">
+      <div class="column is-10 is-offset-1">
         <img :src="blog.titleImage">
       </div>
     </div>

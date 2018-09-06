@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import BlogHome from './views/BlogHome.vue'
 import About from './views/About'
 import Blog from './views/Blog'
+import NewBlog from './views/NewBlog'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/new-blog',
+      name: 'NewBlog',
+      component: NewBlog
     },
     {
       path: '/:blog_slug',
