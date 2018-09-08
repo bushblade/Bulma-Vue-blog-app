@@ -49,6 +49,20 @@ export const newBlog = {
         state.titleImage.feedback = 'Images must be 500kb or less'
         state.titleImage.preview = 'https://via.placeholder.com/640x480'
       }
+    },
+    addField: (state, payload) => {
+      if (payload === 'p') {
+        state.content.push({
+          type: 'text',
+          value: null
+        })
+      } else {
+        state.content.push({
+          type: 'image',
+          src: null,
+          feedBack: null
+        })
+      }
     }
   },
   actions: {

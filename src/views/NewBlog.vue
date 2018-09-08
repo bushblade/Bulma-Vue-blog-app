@@ -11,9 +11,10 @@
         <AuthorDateTitle />
         <Keywords />
         <TitleImageInput />
+        <Controls />
       </div>
       <div class="column is-half preview">
-
+        
       </div>
     </div>
   </div>
@@ -23,6 +24,7 @@
   import AuthorDateTitle from '@/components/NewBlog/AuthorDateTitle'
   import TitleImageInput from '@/components/NewBlog/TitleImageInput'
   import Keywords from '@/components/NewBlog/Keywords'
+  import Controls from '@/components/NewBlog/Controls'
 
   export default {
     name: 'NewBlog',
@@ -34,7 +36,8 @@
     components: {
       AuthorDateTitle,
       TitleImageInput,
-      Keywords
+      Keywords,
+      Controls
     },
     computed: {
       titleImagePreview() {

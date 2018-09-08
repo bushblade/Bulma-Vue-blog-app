@@ -1,8 +1,8 @@
 <template>
   <div class="column">
-    <div class="columns is-multiline">
-      <div class="column is-8">
-        <div class="file has-name is-fullwidth" :class="validClass">
+    <div class="columns is-multiline is-vcentered is-mobile">
+      <div class="column is-7">
+        <div class="file has-name is-boxed" :class="validClass">
           <label class="file-label">
             <input class="file-input" type="file" @input="addTitleImage">
             <span class="file-cta">
@@ -20,9 +20,9 @@
         </div>
         <p v-if="titleImage.feedback" class="help is-danger">{{ titleImage.feedback }}</p>
       </div>
-      <div class="column is-4">
+      <div class="column is-5">
         <figure class="image is-4by3">
-          <img :src="titleImage.preview">
+          <img class="preview-thumbnail" :src="titleImage.preview">
         </figure>
       </div>
     </div>
@@ -53,6 +53,8 @@
 </script>
 
 <style>
-
+  .preview-thumbnail {
+    object-fit: cover;
+  }
 
 </style>
