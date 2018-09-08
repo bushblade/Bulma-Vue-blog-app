@@ -1,5 +1,5 @@
 <template>
-  <div class="column is-two-thirds">
+  <div class="column is-12">
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Keywords</label>

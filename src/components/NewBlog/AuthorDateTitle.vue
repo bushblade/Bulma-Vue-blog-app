@@ -1,15 +1,18 @@
 <template>
-  <div class="columns">
-    <div class="column is-one-third" v-for="(field, indx) in fields" :key="indx">
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">{{ field.label }}</label>
+  <div class="column is-12">
+    <div class="columns is-multiline">
+      <div class="column is-12" v-for="(field, indx) in fields" :key="indx">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">{{ field.label }}</label>
+          </div>
+          <div class="field-body">
+            <input class="input" type="text" :placeholder="field.label" :value="field.val.value" @input="field.fn"
+              :class="validClasses(field)">
+          </div>
         </div>
-        <div class="field-body">
-          <input class="input" type="text" :placeholder="field.label" :value="field.val.value" @input="field.fn" :class="validClasses(field)">
-        </div>
+        <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
       </div>
-      <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
     </div>
   </div>
 </template>
@@ -56,8 +59,8 @@
         }
       }
     },
-    created(){
-      if (!this.$store.state.newBlog.date.value){
+    created() {
+      if (!this.$store.state.newBlog.date.value) {
         this.$store.commit('defaultDate')
       }
     }
