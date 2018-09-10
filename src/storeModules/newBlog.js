@@ -31,8 +31,8 @@ export const newBlog = {
     slug: null
   },
   mutations: {
-    update: (state, { target, value }) => {
-      state[target].value = value
+    update: (state, { property, value }) => {
+      state[property].value = value
     },
     updateKeywords: (state, payload) => state.keywords = payload,
     defaultDate: state => {

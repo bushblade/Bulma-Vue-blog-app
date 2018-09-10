@@ -4,3 +4,7 @@ export const validClasses = ({feedback, value}) => {
     'is-success': !feedback && value
   }
 }
+
+export const capitalize = str => {
+  return str[0].toUpperCase() + str.slice(1)
+}

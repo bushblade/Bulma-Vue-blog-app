@@ -4,11 +4,12 @@
       <div class="column is-12" v-for="(field, indx) in fields" :key="indx">
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label">{{ field.label }}</label>
+            <label class="label">{{ capitalize(field.property) }}</label>
           </div>
           <div class="field-body">
-            <input class="input" type="text" :placeholder="field.label" :value="field.val.value" @input="field.fn"
-              :class="validClasses(field.val)">
+            <input class="input" type="text"
+             :placeholder="capitalize(field.property)" :value="field.val.value" @input="updateField($event, field)"
+             :class="validClasses(field.val)">
           </div>
         </div>
         <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
@@ -18,43 +19,34 @@
 </template>
 
 <script>
-import { validClasses } from './helpers'
+import { validClasses, capitalize } from './helpers'
 
   export default {
     name: 'AuthorDateTitle',
     computed: {
       fields() {
-        let { author, date, title } = this.$store.state.newBlog,
-          { commit } = this.$store
+        const { state:{ newBlog: { author, date, title } }, commit } = this.$store
         return [{
-            label: 'Author',
             val: author,
-            fn: (e) => commit('update', {
-              target: 'author',
-              value: e.target.value
-            })
+            property: 'author'
           },
           {
-            label: 'Date',
             val: date,
-            fn: (e) => commit('update', {
-              target: 'date',
-              value: e.target.value
-            })
+            property: 'date'
           },
           {
-            label: 'Title',
             val: title,
-            fn: (e) => commit('update', {
-              target: 'title',
-              value: e.target.value
-            })
+            property: 'title'
           }
         ]
       }
     },
     methods: {
-      validClasses
+      validClasses,
+      capitalize,
+      updateField({target: { value }}, { property }){
+        this.$store.commit('update', { property, value })
+      }
     },
     created() {
       if (!this.$store.state.newBlog.date.value) {
