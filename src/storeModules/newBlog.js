@@ -36,7 +36,7 @@ export const newBlog = {
     },
     updateKeywords: (state, payload) => state.keywords = payload,
     defaultDate: state => {
-      if (!state.date.value){
+      if (!state.date.value) {
         state.date.value = new Date().toDateString()
       }
     },
@@ -60,10 +60,25 @@ export const newBlog = {
       } else {
         content.push({
           type: 'image',
-          src: null,
+          value: null,
           feedBack: null,
+          preview: 'https://via.placeholder.com/640x480',
           id: Symbol()
         })
+      }
+    },
+    updateTextField: ({ content }, { value, index }) => {
+      content[index].value = value
+    },
+    updateImagefield: ({ content }, { files, index }) => {
+      if (files[0].size <= 5000000) {
+        content[index].value = files[0]
+        content[index].feedBack = null
+        content[index].preview = window.URL.createObjectURL(files[0])
+      } else {
+        content[index].value = null
+        content[index].feedback = 'Images must be 500kb or less'
+        content[index].preview = 'https://via.placeholder.com/640x480'
       }
     }
   },

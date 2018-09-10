@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { validClasses } from './helpers'
+  import { validClasses } from './helpers'
 
   export default {
     name: 'TitleImage',
@@ -52,5 +52,4 @@ import { validClasses } from './helpers'
   .preview-thumbnail {
     object-fit: cover;
   }
-
 </style>

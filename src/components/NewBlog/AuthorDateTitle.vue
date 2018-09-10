@@ -7,9 +7,7 @@
             <label class="label">{{ capitalize(field.property) }}</label>
           </div>
           <div class="field-body">
-            <input class="input" type="text"
-             :placeholder="capitalize(field.property)" :value="field.val.value" @input="updateField($event, field)"
-             :class="validClasses(field.val)">
+            <input class="input" type="text" :placeholder="capitalize(field.property)" :value="field.val.value" @input="updateField($event, field)" :class="validClasses(field.val)">
           </div>
         </div>
         <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
@@ -19,13 +17,13 @@
 </template>
 
 <script>
-import { validClasses, capitalize } from './helpers'
+  import { validClasses, capitalize } from './helpers'
 
   export default {
     name: 'AuthorDateTitle',
     computed: {
       fields() {
-        const { state:{ newBlog: { author, date, title } }, commit } = this.$store
+        const { state: { newBlog: { author, date, title } }, commit } = this.$store
         return [{
             val: author,
             property: 'author'
@@ -44,7 +42,7 @@ import { validClasses, capitalize } from './helpers'
     methods: {
       validClasses,
       capitalize,
-      updateField({target: { value }}, { property }){
+      updateField({ target: { value } }, { property }) {
         this.$store.commit('update', { property, value })
       }
     },
