@@ -14,3 +14,8 @@ npm run serve
 ```
 npm run build
 ```
+
+### to do next
+
+* main text field input
+* dynamic field inputs
