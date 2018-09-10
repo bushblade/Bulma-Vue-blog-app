@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     updateMainText(e){
-      this.$store.commit('update', { target: 'mainText', value: e.target.value})
+      this.$store.commit('update', { target: 'mainText', value: e.target.value })
     },
     validClasses({feedback, value}) {
         return {
