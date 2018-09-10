@@ -2,7 +2,7 @@
   <div class="column">
     <div class="columns is-multiline is-vcentered is-mobile">
       <div class="column is-7">
-        <div class="file has-name is-boxed" :class="validClass">
+        <div class="file has-name is-boxed" :class="validClasses(titleImage)">
           <label class="file-label">
             <input class="file-input" type="file" @input="addTitleImage">
             <span class="file-cta">
@@ -30,24 +30,20 @@
 </template>
 
 <script>
+import { validClasses } from './helpers'
+
   export default {
     name: 'TitleImage',
     computed: {
       titleImage() {
         return this.$store.state.newBlog.titleImage
-      },
-      validClass() {
-        const { feedback, value } = this.$store.state.newBlog.titleImage
-        return {
-          'is-danger': feedback,
-          'is-success': !feedback && value
-        }
       }
     },
     methods: {
       addTitleImage(e) {
         this.$store.commit('setTitleImage', { payload: e.target.files[0] })
-      }
+      },
+      validClasses
     }
   }
 </script>

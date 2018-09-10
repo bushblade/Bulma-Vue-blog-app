@@ -8,7 +8,7 @@
           </div>
           <div class="field-body">
             <input class="input" type="text" :placeholder="field.label" :value="field.val.value" @input="field.fn"
-              :class="validClasses(field)">
+              :class="validClasses(field.val)">
           </div>
         </div>
         <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { validClasses } from './helpers'
+
   export default {
     name: 'AuthorDateTitle',
     computed: {
@@ -52,12 +54,7 @@
       }
     },
     methods: {
-      validClasses({val: {feedback, value}}) {
-        return {
-          'is-danger': feedback,
-          'is-success': !feedback && value
-        }
-      }
+      validClasses
     },
     created() {
       if (!this.$store.state.newBlog.date.value) {

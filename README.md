@@ -18,4 +18,3 @@ npm run build
 ### to do next
 
 * dynamic field inputs
-* dry up valid classes 

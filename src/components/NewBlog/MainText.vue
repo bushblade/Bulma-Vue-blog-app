@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { validClasses } from './helpers'
+
 export default {
   name: 'MainText',
   computed: {
@@ -21,12 +23,7 @@ export default {
     updateMainText(e){
       this.$store.commit('update', { target: 'mainText', value: e.target.value })
     },
-    validClasses({feedback, value}) {
-        return {
-          'is-danger': feedback,
-          'is-success': !feedback && value
-        }
-      }
+    validClasses
   }
 }
 </script>

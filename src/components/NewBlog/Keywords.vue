@@ -5,8 +5,8 @@
         <label class="label">Keywords</label>
       </div>
       <div class="field-body">
-        <input class="input" type="text" placeholder="Keywords to search" :value="keywordsText" @input="addKeywords"
-          :class="validClass">
+        <input class="input" type="text" placeholder="Keywords to search" :value="keywordsText(keywords)" @input="addKeywords"
+          :class="validClass(keywords)">
       </div>
     </div>
   </div>
@@ -18,21 +18,20 @@
     computed: {
       keywords() {
         return this.$store.state.newBlog.keywords
-      },
-      keywordsText() {
-        let keywords = this.$store.state.newBlog.keywords
-        if (keywords) return keywords.join(',')
-      },
-      validClass() {
-        let keywords = this.$store.state.newBlog.keywords
-        return {
-          'is-success': keywords
-        }
       }
     },
     methods: {
       addKeywords(e) {
-        this.$store.commit('updateKeywords', e.target.value.split(','))
+        let val = e.target.value.length > 0 ? e.target.value.split(',') : null 
+        this.$store.commit('updateKeywords', val)
+      },
+      keywordsText(keywordsArr) {
+        if (keywordsArr) return keywordsArr.join(',')
+      },
+      validClass(keywordsArr) {
+        return {
+          'is-success': keywordsArr
+        }
       }
     }
   }
