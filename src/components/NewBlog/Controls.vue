@@ -28,7 +28,7 @@
         },
         {
           text: 'Publish',
-          fn: () => console.log(this.$store.state.newBlog.content)
+          fn: () => console.log(this.$store.state.newBlog)
         }]
       }
     }

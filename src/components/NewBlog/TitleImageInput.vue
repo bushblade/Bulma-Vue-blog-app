@@ -37,16 +37,16 @@
         return this.$store.state.newBlog.titleImage
       },
       validClass() {
-        let titleImage = this.$store.state.newBlog.titleImage
+        const { feedback, value } = this.$store.state.newBlog.titleImage
         return {
-          'is-danger': titleImage.feedback,
-          'is-success': !titleImage.feedback && titleImage.value
+          'is-danger': feedback,
+          'is-success': !feedback && value
         }
       }
     },
     methods: {
       addTitleImage(e) {
-        this.$store.commit('setTitleImage', e.target.files[0])
+        this.$store.commit('setTitleImage', { payload: e.target.files[0] })
       }
     }
   }

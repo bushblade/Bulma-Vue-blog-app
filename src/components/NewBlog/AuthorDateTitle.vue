@@ -22,11 +22,11 @@
     name: 'AuthorDateTitle',
     computed: {
       fields() {
-        let blog = this.$store.state.newBlog,
-          commit = this.$store.commit
+        let { author, date, title } = this.$store.state.newBlog,
+          { commit } = this.$store
         return [{
             label: 'Author',
-            val: blog.author,
+            val: author,
             fn: (e) => commit('update', {
               target: 'author',
               value: e.target.value
@@ -34,7 +34,7 @@
           },
           {
             label: 'Date',
-            val: blog.date,
+            val: date,
             fn: (e) => commit('update', {
               target: 'date',
               value: e.target.value
@@ -42,7 +42,7 @@
           },
           {
             label: 'Title',
-            val: blog.title,
+            val: title,
             fn: (e) => commit('update', {
               target: 'title',
               value: e.target.value
@@ -52,10 +52,10 @@
       }
     },
     methods: {
-      validClasses(field) {
+      validClasses({val: {feedback, value}}) {
         return {
-          'is-danger': field.val.feedback,
-          'is-success': !field.val.feedback && field.val.value
+          'is-danger': feedback,
+          'is-success': !feedback && value
         }
       }
     },

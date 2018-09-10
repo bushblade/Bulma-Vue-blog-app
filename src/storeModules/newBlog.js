@@ -40,25 +40,25 @@ export const newBlog = {
         state.date.value = new Date().toDateString()
       }
     },
-    setTitleImage: (state, payload) => {
+    setTitleImage: ({ titleImage }, { payload }) => {
       if (payload.size <= 5000000) {
-        state.titleImage.value = payload
-        state.titleImage.preview = window.URL.createObjectURL(payload)
-        state.titleImage.feedback = null
+        titleImage.value = payload
+        titleImage.preview = window.URL.createObjectURL(payload)
+        titleImage.feedback = null
       } else {
-        state.titleImage.feedback = 'Images must be 500kb or less'
-        state.titleImage.preview = 'https://via.placeholder.com/640x480'
+        titleImage.feedback = 'Images must be 500kb or less'
+        titleImage.preview = 'https://via.placeholder.com/640x480'
       }
     },
-    addField: (state, payload) => {
+    addField: ({ content }, payload) => {
       if (payload === 'p') {
-        state.content.push({
+        content.push({
           type: 'text',
           value: null,
           id: Symbol()
         })
       } else {
-        state.content.push({
+        content.push({
           type: 'image',
           src: null,
           feedBack: null,
