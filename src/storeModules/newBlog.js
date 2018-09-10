@@ -71,14 +71,15 @@ export const newBlog = {
       content[index].value = value
     },
     updateImagefield: ({ content }, { files, index }) => {
+      const toUpdate = content[index]
       if (files[0].size <= 5000000) {
-        content[index].value = files[0]
-        content[index].feedBack = null
-        content[index].preview = window.URL.createObjectURL(files[0])
+        toUpdate.value = files[0]
+        toUpdate.feedBack = null
+        toUpdate.preview = window.URL.createObjectURL(files[0])
       } else {
-        content[index].value = null
-        content[index].feedback = 'Images must be 500kb or less'
-        content[index].preview = 'https://via.placeholder.com/640x480'
+        toUpdate.value = null
+        toUpdate.feedback = 'Images must be 500kb or less'
+        toUpdate.preview = 'https://via.placeholder.com/640x480'
       }
     }
   },
