@@ -17,5 +17,5 @@ npm run build
 
 ### to do next
 
-* main text field input
 * dynamic field inputs
+* dry up valid classes 

@@ -10,6 +10,7 @@
         <AuthorDateTitle />
         <Keywords />
         <TitleImageInput />
+        <MainText />
         <DynamicFields />
         <Controls />
       </div>
@@ -26,6 +27,7 @@
   import Keywords from '@/components/NewBlog/Keywords'
   import Controls from '@/components/NewBlog/Controls'
   import DynamicFields from '@/components/NewBlog/DynamicFields'
+  import MainText from '@/components/NewBlog/MainText'
 
   export default {
     name: 'NewBlog',
@@ -39,7 +41,8 @@
       TitleImageInput,
       Keywords,
       Controls,
-      DynamicFields
+      DynamicFields,
+      MainText
     },
     computed: {
       titleImagePreview() {
