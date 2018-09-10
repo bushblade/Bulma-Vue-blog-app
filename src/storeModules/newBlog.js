@@ -54,13 +54,15 @@ export const newBlog = {
       if (payload === 'p') {
         state.content.push({
           type: 'text',
-          value: null
+          value: null,
+          id: Symbol()
         })
       } else {
         state.content.push({
           type: 'image',
           src: null,
-          feedBack: null
+          feedBack: null,
+          id: Symbol()
         })
       }
     }
