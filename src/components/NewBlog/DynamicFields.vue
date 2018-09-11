@@ -1,7 +1,6 @@
 <template>
   <div class="column is-12">
-    <transition-group tag="div" class="columns is-multiline"
-    name="dyno-field">
+    <transition-group tag="div" class="columns is-multiline" name="dyno-field">
       <div class="column is-12 dyno-field-item" v-for="(field, index) of fields" :key="field.id">
         <div class="columns is-multiline">
 
@@ -100,7 +99,7 @@
 
 <style>
   .dyno-field-item {
-    transition: all 1s;
+    transition: all 0.5s;
   }
 
   .dyno-field-enter,
@@ -110,6 +109,12 @@
   }
 
   .dyno-field-leave-active {
-    position: absolute;
+    /* position: absolute; */
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    font-size: 0;
+    color: transparent;
   }
 </style>
