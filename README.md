@@ -18,3 +18,4 @@ npm run build
 ### to do next
 
 * dynamic field inputs
+  * transitions

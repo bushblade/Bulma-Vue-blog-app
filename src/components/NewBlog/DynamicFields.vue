@@ -3,6 +3,8 @@
     <transition-group tag="div" class="columns is-multiline">
       <div class="column is-12" v-for="(field, index) of fields" :key="field.id">
         <div class="columns is-multiline">
+
+          <!-- text field -->
           <div class="column is-12" v-if="field.type === 'text'">
             <textarea class="textarea" :value="field.value" @input="updateTextField($event, index)"></textarea>
           </div>
@@ -37,10 +39,11 @@
             </div>
           </div>
 
+          <!-- controls -->
           <div class="column is-12">
-            <!-- controls -->
             <div class="buttons is-centered">
-              <span class="button is-small" v-for="btn of buttons" :key="btn.icon">
+              <span class="button is-small" v-for="btn of buttons" :key="btn.icon"
+              @click="buttonAction(btn.action, index)">
                 <span class="icon">
                   <i :class="btn.icon"></i>
                 </span>
@@ -61,13 +64,16 @@
     data() {
       return {
         buttons: [{
-            icon: 'fas fa-trash'
+            icon: 'fas fa-trash',
+            action: 'deleteField'
           },
           {
-            icon: 'fas fa-chevron-up'
+            icon: 'fas fa-chevron-up',
+            action: 'moveFieldUp'
           },
           {
-            icon: 'fas fa-chevron-down'
+            icon: 'fas fa-chevron-down',
+            action: 'moveFieldDown'
           }
         ]
       }
@@ -84,6 +90,9 @@
       },
       updateImageField({ target: { files } }, index) {
         this.$store.commit('updateImagefield', { files, index })
+      },
+      buttonAction(action, index){
+        this.$store.commit(action, { index })
       }
     }
   }

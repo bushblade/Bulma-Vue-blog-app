@@ -81,7 +81,22 @@ export const newBlog = {
         toUpdate.feedback = 'Images must be 500kb or less'
         toUpdate.preview = 'https://via.placeholder.com/640x480'
       }
-    }
+    },
+    moveFieldUp: ({ content }, { index }) => {
+      if (index !== 0){
+        let toMove = content[index]
+        content.splice(index, 1)
+        content.splice(index -1 , 0, toMove)
+      }
+    },
+    moveFieldDown: ({ content }, { index }) => {
+      if (index !== content.lenght-1) {
+        let toMove = content[index]
+        content.splice(index, 1)
+        content.splice(index +1, 0, toMove)
+      }
+    },
+    deleteField: ({ content }, { index }) => content.splice(index, 1)
   },
   actions: {
 
