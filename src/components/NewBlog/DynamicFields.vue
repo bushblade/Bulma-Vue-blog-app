@@ -1,7 +1,8 @@
 <template>
   <div class="column is-12">
-    <transition-group tag="div" class="columns is-multiline">
-      <div class="column is-12" v-for="(field, index) of fields" :key="field.id">
+    <transition-group tag="div" class="columns is-multiline"
+    name="dyno-field">
+      <div class="column is-12 dyno-field-item" v-for="(field, index) of fields" :key="field.id">
         <div class="columns is-multiline">
 
           <!-- text field -->
@@ -42,8 +43,7 @@
           <!-- controls -->
           <div class="column is-12">
             <div class="buttons is-centered">
-              <span class="button is-small" v-for="btn of buttons" :key="btn.icon"
-              @click="buttonAction(btn.action, index)">
+              <span class="button is-small" v-for="btn of buttons" :key="btn.icon" @click="buttonAction(btn.action, index)">
                 <span class="icon">
                   <i :class="btn.icon"></i>
                 </span>
@@ -91,9 +91,25 @@
       updateImageField({ target: { files } }, index) {
         this.$store.commit('updateImagefield', { files, index })
       },
-      buttonAction(action, index){
+      buttonAction(action, index) {
         this.$store.commit(action, { index })
       }
     }
   }
 </script>
+
+<style>
+  .dyno-field-item {
+    transition: all 1s;
+  }
+
+  .dyno-field-enter,
+  .dyno-field-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  .dyno-field-leave-active {
+    position: absolute;
+  }
+</style>
