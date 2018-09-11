@@ -17,4 +17,4 @@ npm run build
 
 ### to do next
 
-* preview for new blog
+* Publish/upload blog to Firebase
