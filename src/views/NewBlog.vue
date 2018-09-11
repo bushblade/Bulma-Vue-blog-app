@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="columns">
       <div class="column is-8 is-offset-2">
         <h1 class="is-size-1 has-text-centered">Create a new blog post</h1>
@@ -15,7 +15,7 @@
         <Controls />
       </div>
       <div class="column is-half preview">
-        
+        <PreviewBlog />
       </div>
     </div>
   </div>
@@ -28,6 +28,7 @@
   import Controls from '@/components/NewBlog/Controls'
   import DynamicFields from '@/components/NewBlog/DynamicFields'
   import MainText from '@/components/NewBlog/MainText'
+  import PreviewBlog from '@/components/NewBlog/PreviewBlog'
 
   export default {
     name: 'NewBlog',
@@ -42,7 +43,8 @@
       Keywords,
       Controls,
       DynamicFields,
-      MainText
+      MainText,
+      PreviewBlog
     },
     computed: {
       titleImagePreview() {

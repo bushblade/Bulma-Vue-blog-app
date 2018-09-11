@@ -21,7 +21,7 @@
         <p v-if="titleImage.feedback" class="help is-danger">{{ titleImage.feedback }}</p>
       </div>
       <div class="column is-5">
-        <figure class="image is-4by3">
+        <figure class="image is-2by1">
           <img class="preview-thumbnail" :src="titleImage.preview">
         </figure>
       </div>

@@ -18,7 +18,7 @@ export const newBlog = {
     titleImage: {
       value: null,
       feedback: null,
-      preview: 'https://via.placeholder.com/640x480',
+      preview: 'https://via.placeholder.com/640x300',
       error: 'You need a main image to post'
     },
     mainText: {
@@ -28,7 +28,9 @@ export const newBlog = {
     },
     content: [],
     keywords: null,
-    slug: null
+    slug: null,
+    saved: false,
+    published: false
   },
   mutations: {
     update: (state, { property, value }) => {
@@ -47,7 +49,7 @@ export const newBlog = {
         titleImage.feedback = null
       } else {
         titleImage.feedback = 'Images must be 500kb or less'
-        titleImage.preview = 'https://via.placeholder.com/640x480'
+        titleImage.preview = 'https://via.placeholder.com/640x300'
       }
     },
     addField: ({ content }, payload) => {

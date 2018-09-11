@@ -1,6 +1,7 @@
 <template>
   <div class="column is-12">
     <textarea class="textarea" placeholder="Main text"
+      rows="8"
       :value="mainText.value"
       @input="updateMainText"
       :class="validClasses(mainText)"

@@ -1,14 +1,12 @@
 <template>
   <div id="app">
     <Navbar />
-    <div class="container">
-      <transition class="container" 
+      <transition tag="div"
         mode="out-in" 
         enter-active-class="animated fadeIn faster" 
         leave-active-class="animated fadeOut faster">
         <router-view @click.native="closeNav" />
       </transition>
-    </div>
   </div>
 </template>
 

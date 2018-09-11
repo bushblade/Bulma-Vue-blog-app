@@ -1,18 +1,20 @@
 <template>
   <div class="column is-12">
     <transition-group tag="div" class="columns is-multiline" name="dyno-field">
-      <div class="column is-12 dyno-field-item" v-for="(field, index) of fields" :key="field.id">
+      <div class="column is-12 dyno-field-item box" v-for="(field, index) of fields" :key="field.id">
         <div class="columns is-multiline">
 
           <!-- text field -->
           <div class="column is-12" v-if="field.type === 'text'">
-            <textarea class="textarea" :value="field.value" @input="updateTextField($event, index)"></textarea>
+            <textarea class="textarea" :value="field.value"
+             rows="6"
+             @input="updateTextField($event, index)"></textarea>
           </div>
 
           <!-- image field -->
           <div class="column is-12" v-if="field.type === 'image'">
             <div class="columns is-multiline is-vcentered is-mobile">
-              <div class="column is-7">
+              <div class="column is-7 is-centered">
                 <div class="file has-name is-boxed" :class="validClasses(field)">
                   <label class="file-label">
                     <input class="file-input" type="file" @input="updateImageField($event, index)">
@@ -32,7 +34,7 @@
                 <p v-if="field.feedback" class="help is-danger">{{ field.feedback }}</p>
               </div>
               <div class="column is-5">
-                <figure class="image is-4by3">
+                <figure class="image is-2by1">
                   <img class="preview-thumbnail" :src="field.preview">
                 </figure>
               </div>
