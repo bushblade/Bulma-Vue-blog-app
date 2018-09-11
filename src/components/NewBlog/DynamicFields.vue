@@ -14,7 +14,7 @@
           <!-- image field -->
           <div class="column is-12" v-if="field.type === 'image'">
             <div class="columns is-multiline is-vcentered is-mobile">
-              <div class="column is-7 is-centered">
+              <div class="column is-7">
                 <div class="file has-name is-boxed" :class="validClasses(field)">
                   <label class="file-label">
                     <input class="file-input" type="file" @input="updateImageField($event, index)">
