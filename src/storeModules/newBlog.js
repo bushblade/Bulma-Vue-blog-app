@@ -29,12 +29,12 @@ export const newBlog = {
     content: [],
     keywords: null,
     slug: null,
-    saved: false,
-    published: false
+    valid: false
   },
   mutations: {
     update: (state, { property, value }) => {
-      state[property].value = value
+     state[property].value = value.length > 0 ? value : null
+      state[property].feedback = null
     },
     updateKeywords: (state, payload) => state.keywords = payload,
     defaultDate: state => {
@@ -50,6 +50,7 @@ export const newBlog = {
       } else {
         titleImage.feedback = 'Images must be 500kb or less'
         titleImage.preview = 'https://via.placeholder.com/640x300'
+        titleImage.value = null
       }
     },
     addField: ({ content }, payload) => {
@@ -85,20 +86,37 @@ export const newBlog = {
       }
     },
     moveFieldUp: ({ content }, { index }) => {
-      if (index !== 0){
+      if (index !== 0) {
         let toMove = content[index]
         content.splice(index, 1)
-        content.splice(index -1 , 0, toMove)
+        content.splice(index - 1, 0, toMove)
       }
     },
     moveFieldDown: ({ content }, { index }) => {
-      if (index !== content.lenght-1) {
+      if (index !== content.lenght - 1) {
         let toMove = content[index]
         content.splice(index, 1)
-        content.splice(index +1, 0, toMove)
+        content.splice(index + 1, 0, toMove)
       }
     },
-    deleteField: ({ content }, { index }) => content.splice(index, 1)
+    deleteField: ({ content }, { index }) => content.splice(index, 1),
+    publishBlog: state => {
+      let toValidate = Object.keys(state).filter((key, indx) => indx < 5)
+      console.log(toValidate)
+      if (toValidate.every(key => state[key].value)) {
+        state.valid = true
+        console.log('Valid')
+        console.log(state)
+      } else {
+        toValidate.forEach(key => {
+          if (state[key].value === null) {
+            state[key].feedback = state[key].error
+          }
+          state.valid = false
+        console.log('not valid')
+        })
+      }
+    }
   },
   actions: {
 

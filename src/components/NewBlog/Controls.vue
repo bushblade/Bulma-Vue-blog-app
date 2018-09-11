@@ -3,7 +3,7 @@
     <div class="buttons has-addons">
       <span class="button" v-for="(btn,indx) of controls"
        :key="indx"
-       @click="btn.fn"
+       @click="buttonAction(btn.fn, btn.type)"
        >{{ btn.text }}</span>
     </div>
   </div>
@@ -16,20 +16,23 @@
       return {
         controls: [{
           text: 'Add Paragraph',
-          fn: () => this.$store.commit('addField', 'p') 
+          fn: 'addField',
+          type: 'p'
         },
         {
           text: 'Add Image',
-          fn: () => this.$store.commit('addField', 'i') 
-        },
-        {
-          text: 'Save',
-          fn: () => console.log('save clicked')
+          fn: 'addField' ,
+          type: 'i'
         },
         {
           text: 'Publish',
-          fn: () => console.log(this.$store.state.newBlog)
+          fn: 'publishBlog'
         }]
+      }
+    },
+    methods: {
+      buttonAction(commitName, type = null) {
+        this.$store.commit(commitName, type)
       }
     }
   }

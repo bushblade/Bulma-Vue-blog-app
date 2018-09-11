@@ -18,3 +18,6 @@ npm run build
 ### to do next
 
 * Publish/upload blog to Firebase
+  * validate newBlog
+  * create blog object from newBlog
+  * upload
