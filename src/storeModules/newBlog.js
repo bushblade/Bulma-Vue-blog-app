@@ -48,21 +48,7 @@ export const newBlog = {
       titleImage.preview = payload.preview
     },
     addField: ({ content }, payload) => {
-      if (payload === 'p') {
-        content.push({
-          type: 'text',
-          value: null,
-          id: Symbol()
-        })
-      } else {
-        content.push({
-          type: 'image',
-          value: null,
-          feedBack: null,
-          preview: 'https://via.placeholder.com/640x300',
-          id: Symbol()
-        })
-      }
+     content.push(payload)
     },
     updateTextField: ({ content }, { value, index }) => {
       content[index].value = value
@@ -81,7 +67,7 @@ export const newBlog = {
       }
     },
     moveFieldDown: ({ content }, { index }) => {
-      if (index !== content.lenght - 1) {
+      if (index !== content.length - 1) {
         let toMove = content[index]
         content.splice(index, 1)
         content.splice(index + 1, 0, toMove)

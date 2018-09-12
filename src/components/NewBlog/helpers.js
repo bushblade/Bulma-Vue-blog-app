@@ -9,7 +9,7 @@ export const capitalize = str => {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-export const checkSetImage = (file) => {
+export const checkSetImage = file => {
   if (file.size <= 5000000) {
     return {
       value: file,

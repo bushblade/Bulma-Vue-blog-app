@@ -32,7 +32,22 @@
     },
     methods: {
       buttonAction(commitName, type = null) {
-        this.$store.commit(commitName, type)
+        const commit = this.$store.commit
+        let imageField = {
+          type: 'image',
+          value: null,
+          feedBack: null,
+          preview: 'https://via.placeholder.com/640x300',
+          id: Symbol()
+        },
+        textField = {
+          type: 'text',
+          value: null,
+          id: Symbol()
+        }
+        if (type === 'p') commit(commitName, textField)
+        else if (type === 'i') commit(commitName, imageField)
+        else commit(commitName)
       }
     }
   }
