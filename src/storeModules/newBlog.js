@@ -42,16 +42,10 @@ export const newBlog = {
         state.date.value = new Date().toDateString()
       }
     },
-    setTitleImage: ({ titleImage }, { file }) => {
-      if (file.size <= 5000000) {
-        titleImage.value = file
-        titleImage.feedback = null
-        titleImage.preview = window.URL.createObjectURL(file)
-      } else {
-        titleImage.value = null
-        titleImage.feedback = 'Images must be 500kb or less'
-        titleImage.preview = 'https://via.placeholder.com/640x300'
-      }
+    setTitleImage: ({ titleImage }, payload) => {
+      titleImage.value = payload.value
+      titleImage.feedback = payload.feedback
+      titleImage.preview = payload.preview
     },
     addField: ({ content }, payload) => {
       if (payload === 'p') {
@@ -73,17 +67,11 @@ export const newBlog = {
     updateTextField: ({ content }, { value, index }) => {
       content[index].value = value
     },
-    updateImagefield: ({ content }, { file, index }) => {
+    updateImagefield: ({ content }, { validated, index }) => {
       const toUpdate = content[index]
-      if (file.size <= 5000000) {
-        toUpdate.value = file
-        toUpdate.feedback = null
-        toUpdate.preview = window.URL.createObjectURL(file)
-      } else {
-        toUpdate.value = null
-        toUpdate.feedback = 'Images must be 500kb or less'
-        toUpdate.preview = 'https://via.placeholder.com/640x480'
-      }
+      toUpdate.value = validated.value
+      toUpdate.feedback = validated.feedback
+      toUpdate.preview = validated.preview
     },
     moveFieldUp: ({ content }, { index }) => {
       if (index !== 0) {

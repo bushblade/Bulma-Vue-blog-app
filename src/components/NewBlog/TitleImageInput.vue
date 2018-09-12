@@ -41,7 +41,7 @@
     },
     methods: {
       addTitleImage( { target: { files } } ) {
-        this.$store.commit('setTitleImage', { file: files[0] })
+        this.$store.commit('setTitleImage', checkSetImage(files[0]))
       },
       validClasses
     }

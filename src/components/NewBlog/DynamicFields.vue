@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import { validClasses } from './helpers'
+  import { validClasses, checkSetImage } from './helpers'
 
   export default {
     name: 'DynamicFields',
@@ -90,7 +90,7 @@
         this.$store.commit('updateTextField', { value, index })
       },
       updateImageField({ target: { files } }, index) {
-        this.$store.commit('updateImagefield', { file: files[0], index })
+        this.$store.commit('updateImagefield', { validated: checkSetImage(files[0]), index})
       },
       buttonAction(action, index) {
         this.$store.commit(action, { index })
