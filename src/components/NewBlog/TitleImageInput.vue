@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { validClasses } from './helpers'
+  import { validClasses, checkSetImage } from './helpers'
 
   export default {
     name: 'TitleImage',
@@ -40,8 +40,8 @@
       }
     },
     methods: {
-      addTitleImage(e) {
-        this.$store.commit('setTitleImage', { payload: e.target.files[0] })
+      addTitleImage( { target: { files } } ) {
+        this.$store.commit('setTitleImage', { file: files[0] })
       },
       validClasses
     }

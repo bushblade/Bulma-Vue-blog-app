@@ -42,15 +42,15 @@ export const newBlog = {
         state.date.value = new Date().toDateString()
       }
     },
-    setTitleImage: ({ titleImage }, { payload }) => {
-      if (payload.size <= 5000000) {
-        titleImage.value = payload
-        titleImage.preview = window.URL.createObjectURL(payload)
+    setTitleImage: ({ titleImage }, { file }) => {
+      if (file.size <= 5000000) {
+        titleImage.value = file
         titleImage.feedback = null
+        titleImage.preview = window.URL.createObjectURL(file)
       } else {
+        titleImage.value = null
         titleImage.feedback = 'Images must be 500kb or less'
         titleImage.preview = 'https://via.placeholder.com/640x300'
-        titleImage.value = null
       }
     },
     addField: ({ content }, payload) => {
@@ -65,7 +65,7 @@ export const newBlog = {
           type: 'image',
           value: null,
           feedBack: null,
-          preview: 'https://via.placeholder.com/640x480',
+          preview: 'https://via.placeholder.com/640x300',
           id: Symbol()
         })
       }
@@ -73,12 +73,12 @@ export const newBlog = {
     updateTextField: ({ content }, { value, index }) => {
       content[index].value = value
     },
-    updateImagefield: ({ content }, { files, index }) => {
+    updateImagefield: ({ content }, { file, index }) => {
       const toUpdate = content[index]
-      if (files[0].size <= 5000000) {
-        toUpdate.value = files[0]
-        toUpdate.feedBack = null
-        toUpdate.preview = window.URL.createObjectURL(files[0])
+      if (file.size <= 5000000) {
+        toUpdate.value = file
+        toUpdate.feedback = null
+        toUpdate.preview = window.URL.createObjectURL(file)
       } else {
         toUpdate.value = null
         toUpdate.feedback = 'Images must be 500kb or less'
@@ -102,7 +102,6 @@ export const newBlog = {
     deleteField: ({ content }, { index }) => content.splice(index, 1),
     publishBlog: state => {
       let toValidate = Object.keys(state).filter((key, indx) => indx < 5)
-      console.log(toValidate)
       if (toValidate.every(key => state[key].value)) {
         state.valid = true
         console.log('Valid')

@@ -90,7 +90,7 @@
         this.$store.commit('updateTextField', { value, index })
       },
       updateImageField({ target: { files } }, index) {
-        this.$store.commit('updateImagefield', { files, index })
+        this.$store.commit('updateImagefield', { file: files[0], index })
       },
       buttonAction(action, index) {
         this.$store.commit(action, { index })
