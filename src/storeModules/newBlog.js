@@ -33,7 +33,7 @@ export const newBlog = {
   },
   mutations: {
     update: (state, { property, value }) => {
-     state[property].value = value.length > 0 ? value : null
+      state[property].value = value.length > 0 ? value : null
       state[property].feedback = null
     },
     updateKeywords: (state, payload) => state.keywords = payload,
@@ -48,7 +48,7 @@ export const newBlog = {
       titleImage.preview = payload.preview
     },
     addField: ({ content }, payload) => {
-     content.push(payload)
+      content.push(payload)
     },
     updateTextField: ({ content }, { value, index }) => {
       content[index].value = value
@@ -86,7 +86,7 @@ export const newBlog = {
             state[key].feedback = state[key].error
           }
           state.valid = false
-        console.log('not valid')
+          console.log('not valid')
         })
       }
     }
