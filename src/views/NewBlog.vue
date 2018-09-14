@@ -10,6 +10,7 @@
         <AuthorDateTitle />
         <Keywords />
         <TitleImageInput />
+        <ContentEditable />
         <Controls />
       </div>
     </div>
@@ -21,6 +22,7 @@
   import TitleImageInput from '@/components/NewBlog/TitleImageInput'
   import Keywords from '@/components/NewBlog/Keywords'
   import Controls from '@/components/NewBlog/Controls'
+  import ContentEditable from '@/components/NewBlog/ContentEditable'
 
   export default {
     name: 'NewBlog',
@@ -33,7 +35,8 @@
       AuthorDateTitle,
       TitleImageInput,
       Keywords,
-      Controls
+      Controls,
+      ContentEditable
     },
     computed: {
       titleImagePreview() {

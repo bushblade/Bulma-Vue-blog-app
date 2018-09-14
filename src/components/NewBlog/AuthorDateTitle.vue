@@ -23,7 +23,7 @@
     name: 'AuthorDateTitle',
     computed: {
       fields() {
-        const { state: { newBlog: { author, date, title } }, commit } = this.$store
+        const { state: { newBlog: { author, date, title } } } = this.$store
         return [{
             val: author,
             property: 'author'
