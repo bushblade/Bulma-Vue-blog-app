@@ -6,16 +6,11 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column is-half input-fields">
+      <div class="column input-fields">
         <AuthorDateTitle />
         <Keywords />
         <TitleImageInput />
-        <MainText />
-        <DynamicFields />
         <Controls />
-      </div>
-      <div class="column is-half preview">
-        <PreviewBlog />
       </div>
     </div>
   </div>
@@ -26,9 +21,6 @@
   import TitleImageInput from '@/components/NewBlog/TitleImageInput'
   import Keywords from '@/components/NewBlog/Keywords'
   import Controls from '@/components/NewBlog/Controls'
-  import DynamicFields from '@/components/NewBlog/DynamicFields'
-  import MainText from '@/components/NewBlog/MainText'
-  import PreviewBlog from '@/components/NewBlog/PreviewBlog'
 
   export default {
     name: 'NewBlog',
@@ -41,10 +33,7 @@
       AuthorDateTitle,
       TitleImageInput,
       Keywords,
-      Controls,
-      DynamicFields,
-      MainText,
-      PreviewBlog
+      Controls
     },
     computed: {
       titleImagePreview() {

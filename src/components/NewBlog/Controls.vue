@@ -11,16 +11,7 @@
     name: 'Controls',
     data() {
       return {
-        controls: [{
-            text: 'Add Paragraph',
-            fn: 'addField',
-            type: 'p'
-          },
-          {
-            text: 'Add Image',
-            fn: 'addField',
-            type: 'i'
-          },
+        controls: [
           {
             text: 'Publish',
             fn: 'publishBlog'

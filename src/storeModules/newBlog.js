@@ -21,12 +21,7 @@ export const newBlog = {
       preview: 'https://via.placeholder.com/640x300',
       error: 'You need a main image to post'
     },
-    mainText: {
-      value: null,
-      feedback: null,
-      error: 'Enter some text for your blog post'
-    },
-    content: [],
+    content: null,
     keywords: null,
     slug: null,
     valid: false
@@ -47,35 +42,8 @@ export const newBlog = {
       titleImage.feedback = payload.feedback
       titleImage.preview = payload.preview
     },
-    addField: ({ content }, payload) => {
-      content.push(payload)
-    },
-    updateTextField: ({ content }, { value, index }) => {
-      content[index].value = value
-    },
-    updateImagefield: ({ content }, { validated, index }) => {
-      const toUpdate = content[index]
-      toUpdate.value = validated.value
-      toUpdate.feedback = validated.feedback
-      toUpdate.preview = validated.preview
-    },
-    moveFieldUp: ({ content }, { index }) => {
-      if (index !== 0) {
-        let toMove = content[index]
-        content.splice(index, 1)
-        content.splice(index - 1, 0, toMove)
-      }
-    },
-    moveFieldDown: ({ content }, { index }) => {
-      if (index !== content.length - 1) {
-        let toMove = content[index]
-        content.splice(index, 1)
-        content.splice(index + 1, 0, toMove)
-      }
-    },
-    deleteField: ({ content }, { index }) => content.splice(index, 1),
     publishBlog: state => {
-      let toValidate = Object.keys(state).filter((key, indx) => indx < 5)
+      let toValidate = Object.keys(state).filter((key, indx) => indx < 4)
       if (toValidate.every(key => state[key].value)) {
         state.valid = true
         console.log('Valid')
