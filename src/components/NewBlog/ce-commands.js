@@ -1,16 +1,13 @@
 export const commands = [{
   "cmd": "bold",
-  "icon": "bold",
+  "icon": "format_bold",
   "desc": "Toggles bold on/off for the selection"
 }, {
   "cmd": "createLink",
   "val": "http://bushbladeprojects.co.uk",
-  "icon": "link",
+  "icon": "fa-link",
   "desc": "Creates an anchor link from the selection"
-}, {
-  "cmd": "decreaseFontSize",
-  "desc": "Adds a SMALL tag around the selection"
-}, {
+},{
   "cmd": "fontSize",
   "val": "1-7",
   "icon": "text-height",
@@ -24,10 +21,7 @@ export const commands = [{
   "val": "h3",
   "icon": "header",
   "desc": "Adds a heading tag around a selection"
-}, {
-  "cmd": "increaseFontSize",
-  "desc": "Adds a BIG tag around the selection"
-}, {
+},{
   "cmd": "insertHorizontalRule",
   "desc": "Inserts a horizontal rule at the insertion point"
 }, {

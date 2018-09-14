@@ -2,7 +2,13 @@
   <div class="column content-editable">
     <div class="card">
       <header class="card-header">
-        <p>controls to go in here</p>
+        <div class="buttons">
+          <span class="button is-small" v-for="(btn, indx) of commands" :key="indx">
+            <span class="icon">
+              <i class="material-icons">{{ btn.icon }}</i>
+            </span>
+          </span>
+        </div>
       </header>
       <div class="card-content" contenteditable="true">
 
@@ -12,13 +18,18 @@
 </template>
 
 <script>
-import commands from './ce-commands'
+  import { commands } from './ce-commands'
 
   export default {
     name: 'ContentEditable',
     data() {
       return {
-        commands
+
+      }
+    },
+    computed: {
+      commands(){
+        return commands
       }
     }
   }
