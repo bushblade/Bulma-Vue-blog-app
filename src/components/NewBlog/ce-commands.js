@@ -3,11 +3,19 @@ export const commands = [{
   "icon": "format_bold",
   "desc": "Toggles bold on/off for the selection"
 }, {
+  "cmd": "italic",
+  "icon": "format_italic",
+  "desc": "Toggles italics on/off for the selection"
+}, {
   "cmd": "createLink",
-  "val": "http://bushbladeprojects.co.uk",
+  "val": "http://www.bushbladeprojects.co.uk/",
   "icon": "insert_link",
   "desc": "Creates an anchor link from the selection"
-},{
+}, {
+  "cmd": "unlink",
+  "icon": "link_off",
+  "desc": "Removes the anchor tag from a selected anchor link"
+}, {
   "cmd": "fontSize",
   "val": "1-7",
   "icon": "format_size",
@@ -18,11 +26,6 @@ export const commands = [{
   "icon": "format_quote",
   "desc": "Adds an HTML block-style tag around the line containing the current selection"
 }, {
-  "cmd": "heading",
-  "val": "h3",
-  "icon": "title",
-  "desc": "Adds a heading tag around a selection"
-},{
   "cmd": "insertHorizontalRule",
   "icon": "horizontal_split",
   "desc": "Inserts a horizontal rule at the insertion point"
@@ -39,10 +42,6 @@ export const commands = [{
   "cmd": "insertParagraph",
   "icon": "notes",
   "desc": "Inserts a paragraph around the selection or the current line"
-}, {
-  "cmd": "italic",
-  "icon": "format_italic",
-  "desc": "Toggles italics on/off for the selection"
 }, {
   "cmd": "justifyCenter",
   "icon": "format_align_center",
@@ -67,8 +66,4 @@ export const commands = [{
   "cmd": "underline",
   "icon": "format_underline",
   "desc": "Toggles underline on/off for the selection"
-}, {
-  "cmd": "unlink",
-  "icon": "link_off",
-  "desc": "Removes the anchor tag from a selected anchor link"
 }]
