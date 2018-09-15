@@ -42,6 +42,9 @@ export const newBlog = {
       titleImage.feedback = payload.feedback
       titleImage.preview = payload.preview
     },
+    updateContent: (state, payload) => {
+      state.content = payload
+    },
     publishBlog: state => {
       let toValidate = Object.keys(state).filter((key, indx) => indx < 4)
       if (toValidate.every(key => state[key].value)) {
