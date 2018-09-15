@@ -24,3 +24,7 @@ export const checkSetImage = file => {
     }
   }
 }
+
+export const slugify = str => {
+  return str.replace(/[^a-z]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
+}

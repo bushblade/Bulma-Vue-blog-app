@@ -6,10 +6,16 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column input-fields">
-        <AuthorDateTitle />
+      <div class="column is-half input-fields">
         <Keywords />
-        <TitleImageInput />
+        <Inputs />
+      </div>
+      <div class="column is-half has-text-centered">
+          <img class="title-image-preview" :src="titleImagePreview">
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
         <ContentEditable />
         <Controls />
       </div>
@@ -18,8 +24,7 @@
 </template>
 
 <script>
-  import AuthorDateTitle from '@/components/NewBlog/AuthorDateTitle'
-  import TitleImageInput from '@/components/NewBlog/TitleImageInput'
+  import Inputs from '@/components/NewBlog/Inputs'
   import Keywords from '@/components/NewBlog/Keywords'
   import Controls from '@/components/NewBlog/Controls'
   import ContentEditable from '@/components/NewBlog/ContentEditable'
@@ -32,16 +37,23 @@
       }
     },
     components: {
-      AuthorDateTitle,
-      TitleImageInput,
+      Inputs,
       Keywords,
       Controls,
       ContentEditable
     },
     computed: {
       titleImagePreview() {
-        return this.$store.state.newBlog.titleImage.preview
+        let preview = this.$store.state.newBlog.titleImage.value 
+        return preview ? preview : 'https://via.placeholder.com/1000x700'
       }
     }
   }
 </script>
+
+<style>
+ .title-image-preview {
+   max-height: 300px;
+   width: auto;
+ }
+</style>

@@ -5,7 +5,7 @@
         <label class="label">Keywords</label>
       </div>
       <div class="field-body">
-        <input class="input" type="text" placeholder="Keywords to search" :value="keywordsText(keywords)" @input="addKeywords"
+        <input class="input" type="text" placeholder="Enter,comma,seperated,values" :value="keywordsText(keywords)" @input="addKeywords"
           :class="validClass(keywords)">
       </div>
     </div>
