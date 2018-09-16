@@ -12,15 +12,20 @@
         </div>
         <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>
       </div>
+      <TitleImageInput />
     </div>
   </div>
 </template>
 
 <script>
   import { validClasses } from './helpers'
+  import TitleImageInput from './TitleImageInput'
 
   export default {
     name: 'AuthorDateTitle',
+    components: {
+      TitleImageInput
+    },
     computed: {
       fields() {
         const { state: { newBlog: { author, date, title, titleImage } } } = this.$store
@@ -38,12 +43,6 @@
             val: title,
             property: 'title',
             text: 'Title'
-          },
-          {
-            val: titleImage,
-            property: 'titleImage',
-            text: 'Title Image',
-            placeHolder: 'Image URL'
           }
         ]
       }

@@ -11,7 +11,7 @@
         <Inputs />
       </div>
       <div class="column is-half has-text-centered">
-          <img class="title-image-preview" :src="titleImagePreview">
+          <img id="title-image-preview" class="title-image-preview" :src="titleImagePreview">
       </div>
     </div>
     <div class="columns">

@@ -33,6 +33,10 @@ export const newBlog = {
         state.slug = value.replace(/[^a-z]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
       }
     },
+    updateTitleImage: (state, { value, feedback }) => {
+      state.titleImage.value = value
+      state.titleImage.feedback = feedback
+    },
     updateKeywords: (state, payload) => state.keywords = payload,
     defaultDate: state => {
       if (!state.date.value) {
