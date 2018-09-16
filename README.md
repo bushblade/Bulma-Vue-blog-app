@@ -17,4 +17,4 @@ npm run build
 
 ### to do next
 
-* Get a contenteditable component working
+* upload to Firebase
