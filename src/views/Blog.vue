@@ -2,7 +2,9 @@
   <div class="container"  v-if="blog">
     <div class="columns">
       <div class="column is-10 is-offset-1">
+        <div class="level-item has-text-centered">
         <img :src="blog.titleImage">
+        </div>
       </div>
     </div>
     <div class="columns blog-content">
