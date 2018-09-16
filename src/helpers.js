@@ -28,3 +28,9 @@ export const checkSetImage = file => {
 export const slugify = str => {
   return str.replace(/[^a-z]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
 }
+
+export const validateImage = src => {
+  let image = new Image()
+  image.src = src
+  return image.width > 0
+}

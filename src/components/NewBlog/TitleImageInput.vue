@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { validClasses } from './helpers'
+  import { validClasses, validateImage } from '@/helpers'
 
   export default {
     name: 'TitleImageInput',
@@ -25,16 +25,13 @@
     methods: {
       validClasses,
       update({ target: { value } }) {
-        let test = new Image(),
-          payload
-        test.src = value
-        if (test.width > 0) {
+        let  payload
+        if (validateImage(value)) {
           payload = { value, feedback: null }
         } else {
           payload = { value, feedback: 'Not a valid URL' }
         }
         this.$store.commit('updateTitleImage', payload)
-        test = null
       }
     }
   }

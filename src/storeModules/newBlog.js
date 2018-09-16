@@ -43,11 +43,6 @@ export const newBlog = {
         state.date.value = new Date().toDateString()
       }
     },
-    setTitleImage: ({ titleImage }, payload) => {
-      titleImage.value = payload.value
-      titleImage.feedback = payload.feedback
-      titleImage.preview = payload.preview
-    },
     updateContent: (state, payload) => {
       state.content = payload
     },
@@ -63,7 +58,6 @@ export const newBlog = {
           state.valid = false
         })
       }
-      return state.valid
     }
   },
   actions: {

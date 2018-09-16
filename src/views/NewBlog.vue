@@ -29,6 +29,8 @@
   import Controls from '@/components/NewBlog/Controls'
   import ContentEditable from '@/components/NewBlog/ContentEditable'
 
+  import { validateImage } from '@/helpers'
+
   export default {
     name: 'NewBlog',
     data() {
@@ -44,10 +46,8 @@
     },
     computed: {
       titleImagePreview() {
-        let test = new Image
         let preview = this.$store.state.newBlog.titleImage.value 
-        test.src = preview
-        return test.width > 0 ? preview : 'https://via.placeholder.com/1000x700'
+        return validateImage(preview) > 0 ? preview : 'https://via.placeholder.com/1000x700'
       }
     }
   }
