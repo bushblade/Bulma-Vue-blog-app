@@ -34,3 +34,15 @@ export const validateImage = src => {
   image.src = src
   return image.width > 0
 }
+
+export const createBlogToPublish = newBlog => {
+  const toPublish = {}
+  for (let key in newBlog) {
+    if (newBlog[key].value) {
+      toPublish[key] = newBlog[key].value
+    } else {
+      toPublish[key] = newBlog[key]
+    }
+  }
+  return toPublish
+}
