@@ -17,9 +17,11 @@ npm run build
 
 ### to do next
 
-* content editable controls to go to bottom
-* fix blog content li bug
 * route action after blog uploaded
+* blurb text
+* click thumbnail to link to blog
+* content editable controls to go to bottom or fixed
 * admin routes and login
 * delete or edit blog
 * upload media
+* prevent duplicate blog titles from uploading
