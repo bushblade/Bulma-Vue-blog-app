@@ -12,4 +12,12 @@ npm-debug.log*
 # Editor directories and files
 .vscode
 
+# firebase
+.firebaserc
+firebase.json
+firestore.rules
+firestore.indexes.json
+storage.rules
+.firebase/hosting.ZGlzdA.cache
+
 /src/firebase/config.js

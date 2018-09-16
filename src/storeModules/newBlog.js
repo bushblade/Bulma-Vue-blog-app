@@ -21,7 +21,7 @@ export const newBlog = {
       error: 'You need a main image to post'
     },
     content: null,
-    keywords: null,
+    keywords: '',
     slug: null,
     valid: false
   },

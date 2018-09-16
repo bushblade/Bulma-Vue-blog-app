@@ -17,5 +17,9 @@ npm run build
 
 ### to do next
 
-* create a new blog object to upload to firebase
-* upload to Firebase
+* content editable controls to go to bottom
+* fix blog content li bug
+* route action after blog uploaded
+* admin routes and login
+* delete or edit blog
+* upload media

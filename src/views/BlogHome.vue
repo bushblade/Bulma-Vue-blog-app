@@ -13,7 +13,7 @@
           <div class="card-content">
             <h3 class="title">{{ blog.title }}</h3>
             <h5 class="subtitle">{{ blog.author }} <em class="has-text-weight-light">{{ blog.date }}</em></h5>
-            <p>{{ blog.mainText.substr(0, 180) }}...</p>            
+            <p> </p>            
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
           <div class="card-footer"></div>

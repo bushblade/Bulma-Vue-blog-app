@@ -13,13 +13,7 @@
               <div class="media-content has-text-centered">
                 <h3 class="title">{{ blog.title }}</h3>
                 <h5 class="subtitle">By {{ blog.author }} on {{ blog.date }}</h5>
-              </div>
-            </div>
-            <p>{{ blog.mainText }}</p>
-            <div v-for="(entry, indx) of blog.content" :key="indx">
-              <p v-if="entry.type === 'text'">{{ entry.value }}</p>
-              <div v-if="entry.type === 'image'" class="has-text-centered">
-                <img :src="entry.src">
+              <div class="content" v-html="blog.content"></div>
               </div>
             </div>
           </div>
