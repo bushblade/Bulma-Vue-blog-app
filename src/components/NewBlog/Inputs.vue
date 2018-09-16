@@ -7,7 +7,7 @@
             <label class="label">{{ field.text }}</label>
           </div>
           <div class="field-body">
-            <input class="input" type="text" :placeholder="field.placeHolder ? field.placeHolder : field.text" :value="field.val.value" @input="updateField($event, field)" :class="validClasses(field.val)">
+            <input class="input" type="text" :placeholder="field.placeHolder ? field.placeHolder : field.text" :value="field.val.value" @change="updateField($event, field)" :class="validClasses(field.val)">
           </div>
         </div>
         <p v-if="field.val.feedback" class="help is-danger has-text-centered">{{ field.val.feedback }}</p>

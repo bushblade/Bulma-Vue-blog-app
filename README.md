@@ -17,4 +17,5 @@ npm run build
 
 ### to do next
 
+* create a new blog object to upload to firebase
 * upload to Firebase

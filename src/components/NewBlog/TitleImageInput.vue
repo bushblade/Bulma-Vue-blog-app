@@ -28,13 +28,13 @@
         let test = new Image(),
           payload
         test.src = value
-        console.log(test.width)
         if (test.width > 0) {
           payload = { value, feedback: null }
         } else {
           payload = { value, feedback: 'Not a valid URL' }
         }
         this.$store.commit('updateTitleImage', payload)
+        test = null
       }
     }
   }

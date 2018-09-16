@@ -44,8 +44,10 @@
     },
     computed: {
       titleImagePreview() {
+        let test = new Image
         let preview = this.$store.state.newBlog.titleImage.value 
-        return preview ? preview : 'https://via.placeholder.com/1000x700'
+        test.src = preview
+        return test.width > 0 ? preview : 'https://via.placeholder.com/1000x700'
       }
     }
   }
