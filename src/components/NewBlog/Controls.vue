@@ -16,14 +16,13 @@ import { createBlogToPublish } from '@/helpers'
       publishBlog() {
         this.$store.commit('validateBlog')
         if (this.$store.state.newBlog.valid) {
-          console.log('valid')
           const toPublish = createBlogToPublish(this.$store.state.newBlog) 
-          console.log(toPublish)
           db.collection('blogs').add(toPublish)
-          .then(res => console.log(res))
+          .then(res => {
+            this.$store.commit('resetNewBlog')
+            this.$router.push(`${toPublish.slug}`)
+          })
           .catch(err => console.log(err))
-        } else {
-          console.log('not valid')
         }
       }
     }

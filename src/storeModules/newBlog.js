@@ -58,6 +58,13 @@ export const newBlog = {
           state.valid = false
         })
       }
+    },
+    resetNewBlog: state => {
+      for (let key in state){
+        if (state[key].value) state[key].value = null
+        else state[key] = null
+      }
+      state.keywords = ''
     }
   },
   actions: {
