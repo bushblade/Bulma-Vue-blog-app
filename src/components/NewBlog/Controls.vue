@@ -1,12 +1,16 @@
 <template>
-  <div class="navbar is-fixed-bottom is-light controls">
+  <div class="navbar is-fixed-bottom is-dark controls">
     <div class="container">
       <div class="navbar-start">
-        <CEControls />
+        <div class="navbar-item">
+          <CEControls />
+        </div>
       </div>
       <div class="navbar-end">
-        <div class="buttons">
-          <span class="button" @click="publishBlog">Publish</span>
+        <div class="navbar-item">
+          <div class="buttons">
+            <span class="button is-small is-primary" @click="publishBlog">Publish</span>
+          </div>
         </div>
       </div>
     </div>
