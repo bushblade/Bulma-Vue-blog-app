@@ -1,6 +1,6 @@
 <template>
   <div class="buttons">
-    <span class="button is-small tooltip is-tooltip-right" v-for="(btn, indx) of commands" :key="indx" :data-tooltip="btn.desc" @click="btnAction(btn.cmd, btn.val)">
+    <span class="button is-small tooltip is-tooltip-info" v-for="(btn, indx) of commands" :key="indx" :data-tooltip="btn.desc" @click="btnAction(btn.cmd, btn.val)">
       <span class="icon">
         <i class="material-icons">{{ btn.icon }}</i>
       </span>
