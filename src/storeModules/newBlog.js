@@ -24,7 +24,8 @@ export const newBlog = {
     content: null,
     keywords: '',
     slug: null,
-    valid: false
+    valid: false,
+    published: false
   },
   mutations: {
     update: (state, { property, value }) => {
@@ -69,6 +70,7 @@ export const newBlog = {
       }
       state.keywords = ''
       state.date.time = null
+      state.published = false
     }
   },
   actions: {
