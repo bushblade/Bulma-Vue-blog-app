@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-light">
+  <nav class="navbar is-primary">
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item has-text-weight-bold is-uppercase" to="/">
