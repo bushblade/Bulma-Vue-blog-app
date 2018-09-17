@@ -12,8 +12,8 @@
         </div>
       </div>
     </div>
-    <div class="columns is-multiline">
-      <div class="column is-one-third" v-for="blog in blogs" :key="blog.slug">
+    <transition-group tag="div" class="columns is-multiline" name="card-animation">
+      <div class="column is-one-third-desktop is-half-tablet card-column" v-for="blog in blogs" :key="blog.slug">
         <div class="card blog-card">
           <div class="card-image">
             <figure class="image is-5by3">
@@ -25,13 +25,13 @@
           <div class="card-content">
             <h3 class="title">{{ blog.title }}</h3>
             <h5 class="subtitle">{{ blog.author }} <em class="has-text-weight-light">{{ blog.date }}</em></h5>
-            <p>{{ strip(blog.content) }}...</p>
+            <!-- <p>{{ strip(blog.content) }}...</p> -->
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
           <!-- <div class="card-footer"></div> -->
         </div>
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -58,7 +58,7 @@
     },
     created() {
       this.$store.dispatch('getBlogs').then(() => {
-        console.log(this.$store.state.allBlogs.map(blog => blog.keywords))
+        // console.log(this.$store.state.allBlogs.map(blog => blog.keywords))
       })
     },
     methods: {
@@ -91,5 +91,18 @@
   .blogs .blog-card:hover {
     transform: scale(1.03) translateY(-2px);
     box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.4);
+  }
+
+  .card-animation-enter,
+  .card-animation-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  .card-animation-leave-active {
+    position: absolute;
+  }
+  .card-column {
+    transition: all 0.5s;
   }
 </style>
