@@ -1,30 +1,45 @@
 <template>
-  <div class="column is-12">
-    <div class="buttons has-addons">
-      <span class="button" @click="publishBlog">Publish</span>
+  <div class="navbar is-fixed-bottom is-light controls">
+    <div class="container">
+      <div class="navbar-start">
+        <CEControls />
+      </div>
+      <div class="navbar-end">
+        <div class="buttons">
+          <span class="button" @click="publishBlog">Publish</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { db, auth } from '@/firebase/init'
-import { createBlogToPublish } from '@/helpers'
+  import { db, auth } from '@/firebase/init'
+  import { createBlogToPublish } from '@/helpers'
+  import CEControls from './CEControls'
 
   export default {
     name: 'Controls',
+    components: {
+      CEControls
+    },
     methods: {
       publishBlog() {
         this.$store.commit('validateBlog')
         if (this.$store.state.newBlog.valid) {
-          const toPublish = createBlogToPublish(this.$store.state.newBlog) 
+          const toPublish = createBlogToPublish(this.$store.state.newBlog)
           db.collection('blogs').add(toPublish)
-          .then(res => {
-            this.$store.commit('resetNewBlog')
-            this.$router.push(`${toPublish.slug}`)
-          })
-          .catch(err => console.log(err))
+            .then(res => {
+              this.$store.commit('resetNewBlog')
+              this.$router.push(`${toPublish.slug}`)
+            })
+            .catch(err => console.log(err))
         }
       }
     }
   }
 </script>
+
+<style>
+
+</style>

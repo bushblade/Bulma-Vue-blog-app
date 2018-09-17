@@ -14,12 +14,17 @@ export default new Vuex.Store({
     allBlogs: []
   },
   mutations: {
-    setBlogs: (state, payload) => state.allBlogs = payload.blogs
+    setBlogs: (state, { blogs }) => state.allBlogs = blogs
   },
   actions: {
     getBlogs: state => {
       db.collection('blogs').get().then(rawBlogs => {
         let blogs = rawBlogs.docs.map(doc => doc.data())
+        .sort((a, b) => {
+          let aDate = new Date(a.date)
+          let bDate = new Date(b.date)
+          return bDate - aDate
+        })
         state.commit('setBlogs', { blogs })
       })
     }

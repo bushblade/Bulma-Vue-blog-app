@@ -16,10 +16,9 @@ npm run build
 ```
 
 ### to do next
-
-* filter blogs by keywords
-* transition group on blog cards
 * content editable controls to go to bottom or fixed
+* sort blogs by date
+* improve handling blurb text
 * admin routes and login
 * delete or edit blog
 * upload media
