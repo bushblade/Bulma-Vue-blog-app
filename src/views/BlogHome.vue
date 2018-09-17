@@ -1,6 +1,18 @@
 <template>
-  <div class="container">
-    <div class="columns is-multiline blogs">
+  <div class="container blogs">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="field">
+          <div class="control has-icons-left">
+            <input class="input is-rounded blog-search" type="text" placeholder="Filter blogs by keyword" v-model="searchText">
+            <span class="icon is-small is-left">
+              <i class="material-icons">search</i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-multiline">
       <div class="column is-one-third" v-for="blog in blogs" :key="blog.slug">
         <div class="card blog-card">
           <div class="card-image">
@@ -26,13 +38,28 @@
 <script>
   export default {
     name: 'BlogHome',
+    data() {
+      return {
+        searchText: null
+      }
+    },
     computed: {
       blogs() {
-        return this.$store.state.allBlogs
+        if (this.searchText) {
+          return this.$store.state.allBlogs.filter(blog => {
+            if (blog.keywords) {
+              return blog.keywords.some(keyword => keyword.includes(this.searchText.toLowerCase()))
+            }
+          })
+        } else {
+          return this.$store.state.allBlogs
+        }
       }
     },
     created() {
-      this.$store.dispatch('getBlogs')
+      this.$store.dispatch('getBlogs').then(() => {
+        console.log(this.$store.state.allBlogs.map(blog => blog.keywords))
+      })
     },
     methods: {
       strip(str) {
@@ -50,7 +77,7 @@
 
 <style>
   .blogs {
-    padding-top: 2rem;
+    padding-top: 0.5rem;
   }
 
   .blogs .card-image img {
