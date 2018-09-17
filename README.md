@@ -17,9 +17,8 @@ npm run build
 
 ### to do next
 
-* route action after blog uploaded
-* blurb text
-* click thumbnail to link to blog
+* filter blogs by keywords
+* transition group on blog cards
 * content editable controls to go to bottom or fixed
 * admin routes and login
 * delete or edit blog
