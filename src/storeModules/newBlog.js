@@ -6,6 +6,7 @@ export const newBlog = {
       error: 'You must enter a user name'
     },
     date: {
+      time: null,
       value: null,
       feedback: null,
       error: 'Enter a valid date'
@@ -40,7 +41,9 @@ export const newBlog = {
     updateKeywords: (state, payload) => state.keywords = payload,
     defaultDate: state => {
       if (!state.date.value) {
-        state.date.value = new Date().toDateString()
+        let now = new Date()
+        state.date.value = now.toDateString()
+        state.date.time = now.getTime()
       }
     },
     updateContent: (state, payload) => {
@@ -65,6 +68,7 @@ export const newBlog = {
         else state[key] = null
       }
       state.keywords = ''
+      state.date.time = null
     }
   },
   actions: {
