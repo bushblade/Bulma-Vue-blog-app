@@ -16,8 +16,7 @@ npm run build
 ```
 
 ### to do next
-* content editable controls to go to bottom or fixed
-* sort blogs by date
+* publish or save
 * improve handling blurb text
 * admin routes and login
 * delete or edit blog
