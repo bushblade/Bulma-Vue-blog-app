@@ -1,17 +1,6 @@
 <template>
   <div class="container blogs">
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <div class="field">
-          <div class="control has-icons-left">
-            <input class="input is-rounded blog-search" type="text" placeholder="Filter blogs by keyword, author or title" v-model="searchText">
-            <span class="icon is-small is-left">
-              <i class="material-icons">search</i>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <BlogSearch v-model="searchText" />
     <transition-group tag="div" class="columns is-multiline" name="card-animation">
       <div class="column is-one-third-desktop is-half-tablet card-column" v-for="blog in blogs" :key="blog.id">
         <div class="card blog-card" v-if="blog.published">
@@ -36,8 +25,13 @@
 </template>
 
 <script>
+import BlogSearch from '@/components/BlogHome/BlogSearch'
+
   export default {
     name: 'BlogHome',
+    components: {
+      BlogSearch
+    },
     data() {
       return {
         searchText: null
