@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css'
 import 'animate.css/animate.css'
 import './assets/styles.css'
 import 'bulma-tooltip'
+import 'bulma-switch'
 
 Vue.config.productionTip = false
 
