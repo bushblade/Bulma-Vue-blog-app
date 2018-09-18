@@ -46,10 +46,9 @@
     computed: {
       blogs() {
         if (this.searchText) {
-          return this.$store.state.allBlogs.filter(blog => {
-            if (blog.keywords) {
-              return blog.keywords.some(keyword => keyword.includes(this.searchText.toLowerCase()))
-            }
+          return this.$store.state.allBlogs.filter(({ author, title, keywords }) => {
+            let joined = `${author} ${title} ${keywords ? keywords.join(' ') : ''}`
+            return joined.toLowerCase().includes(this.searchText.toLowerCase())
           })
         } else {
           return this.$store.state.allBlogs
@@ -102,6 +101,7 @@
   .card-animation-leave-active {
     position: absolute;
   }
+
   .card-column {
     transition: all 0.5s;
   }
