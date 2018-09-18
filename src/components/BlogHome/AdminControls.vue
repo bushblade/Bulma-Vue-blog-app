@@ -9,7 +9,8 @@
     </div>
     <div class="level-right">
       <div class="level-item">
-        <button class="button is-danger is-small is-rounded tooltip" data-tooltip="Delete blog from database">
+        <button class="button is-danger is-small is-rounded tooltip" data-tooltip="Delete blog from database"
+          @click="deleteBlog($event, blog)">
           <i class="material-icons">delete</i>
         </button>
       </div>
@@ -38,6 +39,15 @@
             console.log(`Blog ${id} published state is ${checked}`)
             this.$store.dispatch('getBlogs')
           })
+      },
+      deleteBlog(e, { id }){
+        if (confirm('Are you sure you want to permanently delete this blog?')){
+          db.collection('blogs').doc(id).delete()
+          .then(() => {
+            console.log(`blog with id ${id} was deleted`)
+            this.$store.dispatch('getBlogs')
+          })
+        }
       }
     }
   }
