@@ -4,7 +4,7 @@
       <div class="column is-half">
         <div class="field">
           <div class="control has-icons-left">
-            <input class="input is-rounded blog-search" type="text" placeholder="Filter blogs by keyword" v-model="searchText">
+            <input class="input is-rounded blog-search" type="text" placeholder="Filter blogs by keyword, author or title" v-model="searchText">
             <span class="icon is-small is-left">
               <i class="material-icons">search</i>
             </span>
@@ -47,8 +47,9 @@
       blogs() {
         if (this.searchText) {
           return this.$store.state.allBlogs.filter(({ author, title, keywords }) => {
-            let joined = `${author} ${title} ${keywords ? keywords.join(' ') : ''}`
-            return joined.toLowerCase().includes(this.searchText.toLowerCase())
+            let searchTextArr = this.searchText.split(' '),
+              joined = `${author} ${title} ${keywords ? keywords.join(' ') : ''}`
+            return searchTextArr.every(word => joined.toLowerCase().includes(word.toLowerCase()))
           })
         } else {
           return this.$store.state.allBlogs
