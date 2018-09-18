@@ -29,7 +29,7 @@
     },
     methods: {
       publishBlog() {
-        this.$store.commit('validateBlog')
+        this.$store.commit('validateBlog', { published: true })
         if (this.$store.state.newBlog.valid) {
           const toPublish = createBlogToPublish(this.$store.state.newBlog)
           db.collection('blogs').add(toPublish)
