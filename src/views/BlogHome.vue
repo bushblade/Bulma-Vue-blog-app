@@ -3,7 +3,7 @@
     <BlogSearch v-model="searchText" />
     <transition-group tag="div" class="columns is-multiline" name="card-animation">
       <div class="column is-one-third-desktop is-half-tablet card-column" v-for="blog in blogs" :key="blog.id">
-        <div class="card blog-card" v-if="blog.published">
+        <div class="card blog-card">
           <div class="card-image">
             <figure class="image is-5by3">
               <router-link :to="blog.slug">
@@ -17,7 +17,9 @@
             <!-- <p>{{ strip(blog.content) }}...</p> -->
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
-          <!-- <div class="card-footer"></div> -->
+          <div class="card-footer">
+            <AdminControls :blog="blog"/>
+          </div>
         </div>
       </div>
     </transition-group>
@@ -26,11 +28,13 @@
 
 <script>
 import BlogSearch from '@/components/BlogHome/BlogSearch'
+import AdminControls from '@/components/BlogHome/AdminControls'
 
   export default {
     name: 'BlogHome',
     components: {
-      BlogSearch
+      BlogSearch,
+      AdminControls
     },
     data() {
       return {
@@ -40,7 +44,9 @@ import BlogSearch from '@/components/BlogHome/BlogSearch'
     computed: {
       blogs() {
         if (this.searchText) {
-          return this.$store.state.allBlogs.filter(({ author, title, keywords }) => {
+          // check if admin logged in and show all blogs with published state
+          let blogs = this.$store.state.allBlogs.filter(({ published }) => published) 
+          return blogs.filter(({ author, title, keywords }) => {
             let searchTextArr = this.searchText.split(' '),
               joined = `${author} ${title} ${keywords ? keywords.join(' ') : ''}`
             return searchTextArr.every(word => joined.toLowerCase().includes(word.toLowerCase()))
