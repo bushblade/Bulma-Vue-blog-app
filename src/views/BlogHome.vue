@@ -14,7 +14,7 @@
     </div>
     <transition-group tag="div" class="columns is-multiline" name="card-animation">
       <div class="column is-one-third-desktop is-half-tablet card-column" v-for="blog in blogs" :key="blog.id">
-        <div class="card blog-card">
+        <div class="card blog-card" v-if="blog.published">
           <div class="card-image">
             <figure class="image is-5by3">
               <router-link :to="blog.slug">
