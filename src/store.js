@@ -19,7 +19,11 @@ export default new Vuex.Store({
   actions: {
     getBlogs: state => {
       db.collection('blogs').get().then(rawBlogs => {
-        let blogs = rawBlogs.docs.map(doc => doc.data())
+        let blogs = rawBlogs.docs.map(doc => { 
+          let blogData = doc.data()
+          blogData.id = doc.id
+          return blogData
+        })
         .sort((a, b) => {
           let aDate = new Date(a.date)
           let bDate = new Date(b.date)
