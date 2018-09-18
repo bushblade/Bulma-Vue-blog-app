@@ -6,7 +6,6 @@ export const newBlog = {
       error: 'You must enter a user name'
     },
     date: {
-      time: null,
       value: null,
       feedback: null,
       error: 'Enter a valid date'
@@ -25,7 +24,8 @@ export const newBlog = {
     keywords: '',
     slug: null,
     valid: false,
-    published: false
+    published: false,
+    timeStamp: null
   },
   mutations: {
     update: (state, { property, value }) => {
@@ -44,16 +44,17 @@ export const newBlog = {
       if (!state.date.value) {
         let now = new Date()
         state.date.value = now.toDateString()
-        state.date.time = now.getTime()
+        state.timeStamp = now.getTime()
       }
     },
     updateContent: (state, payload) => {
       state.content = payload
     },
-    validateBlog: state => {
+    validateBlog: (state, { published = false}) => {
       let toValidate = Object.keys(state).filter((key, indx) => indx < 4)
       if (toValidate.every(key => state[key].value)) {
         state.valid = true
+        state.published = published
       } else {
         toValidate.forEach(key => {
           if (state[key].value === null) {
@@ -69,7 +70,6 @@ export const newBlog = {
         else state[key] = null
       }
       state.keywords = ''
-      state.date.time = null
       state.published = false
     }
   },
