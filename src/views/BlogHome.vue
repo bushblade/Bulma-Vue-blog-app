@@ -18,7 +18,7 @@
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
           <div class="card-footer">
-            <AdminControls :blog="blog"/>
+            <AdminControls :blog="blog" />
           </div>
         </div>
       </div>
@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import BlogSearch from '@/components/BlogHome/BlogSearch'
-import AdminControls from '@/components/BlogHome/AdminControls'
+  import BlogSearch from '@/components/BlogHome/BlogSearch'
+  import AdminControls from '@/components/BlogHome/AdminControls'
 
   export default {
     name: 'BlogHome',
@@ -43,16 +43,16 @@ import AdminControls from '@/components/BlogHome/AdminControls'
     },
     computed: {
       blogs() {
+        // check if admin logged in and show all blogs with published state
+        let blogs = this.$store.state.allBlogs.filter(({ published }) => published)
         if (this.searchText) {
-          // check if admin logged in and show all blogs with published state
-          let blogs = this.$store.state.allBlogs.filter(({ published }) => published) 
           return blogs.filter(({ author, title, keywords }) => {
             let searchTextArr = this.searchText.split(' '),
               joined = `${author} ${title} ${keywords ? keywords.join(' ') : ''}`
             return searchTextArr.every(word => joined.toLowerCase().includes(word.toLowerCase()))
           })
         } else {
-          return this.$store.state.allBlogs
+          return blogs
         }
       }
     },

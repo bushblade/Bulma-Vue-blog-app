@@ -16,6 +16,7 @@ npm run build
 ```
 
 ### to do next
+* admin login
 * publish or save
 * improve handling blurb text
 * admin routes and login
