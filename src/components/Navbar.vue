@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-primary">
+  <nav class="navbar is-light">
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item has-text-weight-bold is-uppercase" to="/">
@@ -14,9 +14,16 @@
           <router-link v-for="(link, index) in routerLinks" :key="index" class="navbar-item" active-class="is-active" :to="link.link" exact @click.native="closeNav">{{ link.text }}</router-link>
         </div>
         <div class="navbar-end">
-          <a class="navbar-item" @click="logOut" v-if="userLoggedIn">Log Out</a>
-          <router-link class="navbar-item" to="/login"
-            @click.native="closeNav" v-else>Login</router-link>
+          <div class="navbar-item has-dropdown is-hoverable" v-if="userLoggedIn">
+            <a class="navbar-link">Admin</a>
+            <div class="navbar-dropdown">
+              <router-link to="/new-blog" class="navbar-item" @click.native="closeNav">
+                Create new blog post
+              </router-link>
+              <a class="navbar-item" @click="logOut">Log Out</a>
+            </div>
+          </div>
+          <router-link class="navbar-item" to="/login" @click.native="closeNav" v-else>Login</router-link>
         </div>
       </div>
     </div>
@@ -41,7 +48,7 @@
       active() {
         return this.$store.state.navstate.navOpen ? 'is-active' : ''
       },
-      userLoggedIn(){
+      userLoggedIn() {
         return this.$store.state.user.name.length > 0
       }
     },
@@ -57,6 +64,7 @@
         auth.signOut().then(res => {
           console.log(res)
         })
+        this.$router.push('/login')
       }
     }
   }
