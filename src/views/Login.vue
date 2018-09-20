@@ -42,9 +42,12 @@
     },
     methods: {
       submit() {
-        this.$store.dispatch('login', { email: this.email, password: this.password })
-        .then(res => console.log(this.$store.state.user.name))
-        .catch(err => console.log(err))
+       auth.signInWithEmailAndPassword(this.email, this.password)
+       .then(res => {
+         this.feedback = null
+         this.$router.push('/blog-home')
+       })
+       .catch(err => this.feedback = err.message)
       }
     }
   }
