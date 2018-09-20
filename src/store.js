@@ -37,11 +37,6 @@ export default new Vuex.Store({
         state.commit('setBlogs', { blogs })
       })
     },
-    login: ({ commit }, { email, password }) => {
-      auth.signInWithEmailAndPassword(email, password)
-        // .then(res => console.log(res))
-        // .catch(err => console.log(err))
-    },
     watchAuthState: ({ commit }) => {
       auth.onAuthStateChanged(user => {
         if(user) {
