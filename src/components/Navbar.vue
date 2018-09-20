@@ -61,9 +61,7 @@
       },
       logOut() {
         this.closeNav()
-        auth.signOut().then(res => {
-          console.log(res)
-        })
+        auth.signOut()
         this.$router.push('/login')
       }
     }
