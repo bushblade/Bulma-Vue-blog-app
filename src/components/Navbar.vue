@@ -11,16 +11,12 @@
       </div>
       <div class="navbar-menu" :class="active">
         <div class="navbar-start">
-          <router-link v-for="(link, index) in routerLinks"
-           :key="index"
-           class="navbar-item"
-           active-class="is-active"
-           :to="link.link" exact
-           @click.native="closeNav"
-           >{{ link.text }}</router-link>
+          <router-link v-for="(link, index) in routerLinks" :key="index" class="navbar-item" active-class="is-active" :to="link.link" exact @click.native="closeNav">{{ link.text }}</router-link>
         </div>
         <div class="navbar-end">
-          <router-link class="navbar-item" to="/login">Login</router-link>
+          <a class="navbar-item" @click="logOut" v-if="userLoggedIn">Log Out</a>
+          <router-link class="navbar-item" to="/login"
+            @click.native="closeNav" v-else>Login</router-link>
         </div>
       </div>
     </div>
@@ -28,20 +24,25 @@
 </template>
 
 <script>
+  import { auth } from '@/firebase/init'
+
   export default {
     name: 'Navbar',
     data() {
       return {
         routerLinks: [
-          {link: '/', text: 'Home'},
-          {link: '/about', text: 'About'},
-          {link: '/blog-home', text: 'Blog'}
+          { link: '/', text: 'Home' },
+          { link: '/about', text: 'About' },
+          { link: '/blog-home', text: 'Blog' }
         ]
       }
     },
     computed: {
       active() {
         return this.$store.state.navstate.navOpen ? 'is-active' : ''
+      },
+      userLoggedIn(){
+        return this.$store.state.user.name.length > 0
       }
     },
     methods: {
@@ -50,6 +51,12 @@
       },
       closeNav() {
         this.$store.commit('closeNav')
+      },
+      logOut() {
+        this.closeNav()
+        auth.signOut().then(res => {
+          console.log(res)
+        })
       }
     }
   }
