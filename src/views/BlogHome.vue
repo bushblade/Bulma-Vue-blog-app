@@ -17,7 +17,7 @@
             <!-- <p>{{ strip(blog.content) }}...</p> -->
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" v-if="user.admin">
             <AdminControls :blog="blog" />
           </div>
         </div>
@@ -55,6 +55,9 @@
         } else {
           return blogs
         }
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     created() {
