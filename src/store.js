@@ -9,14 +9,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      name: null,
+      name: '',
       admin: false
     },
     allBlogs: []
   },
   mutations: {
     setBlogs: (state, { blogs }) => state.allBlogs = blogs,
-    setUser: ({ user }, { name = null, admin = false }) =>{
+    setUser: ({ user }, { name, admin }) =>{
       user.name = name
       user.admin = admin
     }
@@ -39,19 +39,18 @@ export default new Vuex.Store({
     },
     login: ({ commit }, { email, password }) => {
       auth.signInWithEmailAndPassword(email, password)
-        .then(cred => {
-          db.collection('users').doc(cred.user.uid).then(res => {
-            commit('setUser', res.data())
-          })
-        }).catch(err => console.log(err))
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err))
     },
     watchAuthState: ({ commit }) => {
       auth.onAuthStateChanged(user => {
-        let userData = {name: null, admin: false}
-        db.collection('users').doc(user.uid).get().then(res => {
-          userData = res.data()
-          commit('setUser', userData)
-        }).catch(err => console.log(err))
+        if(user) {
+          db.collection('users').doc(user.uid).get().then(res => {
+            commit('setUser', res.data())
+          }).catch(err => console.log(err))
+        } else {
+          commit('setUser', {name: '', admin: false})
+        }
       })
     }
   },
