@@ -6,10 +6,11 @@ import About from './views/About'
 import Blog from './views/Blog'
 import NewBlog from './views/NewBlog'
 import Login from './views/Login'
+import { auth } from '@/firebase/init'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -30,7 +31,10 @@ export default new Router({
     {
       path: '/new-blog',
       name: 'NewBlog',
-      component: NewBlog
+      component: NewBlog,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
@@ -44,3 +48,13 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(path => path.meta.requiresAuth)) {
+    auth.currentUser ? next() : next({name: 'Login'})
+  } else {
+    next()
+  }
+})
+
+export default router

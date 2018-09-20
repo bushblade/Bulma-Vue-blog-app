@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-brand">
         <router-link class="navbar-item has-text-weight-bold is-uppercase" to="/">
-          <span class="is-size-4">Blogg App</span>
+          <span class="is-size-4">Blog App</span>
         </router-link>
         <a class="navbar-burger" :class="active" @click="toggleNav">
           <span v-for="i in 3" :key="i"></span>
