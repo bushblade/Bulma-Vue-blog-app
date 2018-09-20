@@ -43,8 +43,9 @@
     },
     computed: {
       blogs() {
-        // check if admin logged in and show all blogs with published state
-        let blogs = this.$store.state.allBlogs.filter(({ published }) => published)
+        let blogs = this.$store.state.user.admin ?
+          this.$store.state.allBlogs :
+          this.$store.state.allBlogs.filter(({ published }) => published)
         if (this.searchText) {
           return blogs.filter(({ author, title, keywords }) => {
             let searchTextArr = this.searchText.split(' '),
