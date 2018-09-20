@@ -2,7 +2,6 @@
   <div class="column content-editable">
     <div class="card">
       <header class="card-header">
-       <!-- <CEControls /> -->
       </header>
       <div id="content-edit" class="card-content content" contenteditable="true" @input="updateContent">       
       </div>
@@ -17,9 +16,6 @@
       commands() {
         return commands
       }
-    },
-    components: {
-
     },
     methods: {
       updateContent(e) {

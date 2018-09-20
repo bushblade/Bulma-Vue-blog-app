@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { db, auth } from '@/firebase/init'
+  import { db } from '@/firebase/init'
   import { createBlogToPublish } from '@/helpers'
   import CEControls from './CEControls'
 

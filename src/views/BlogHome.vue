@@ -43,9 +43,8 @@
     },
     computed: {
       blogs() {
-        let blogs = this.$store.state.user.admin ?
-          this.$store.state.allBlogs :
-          this.$store.state.allBlogs.filter(({ published }) => published)
+        const { user, allBlogs } = this.$store.state 
+        let blogs = user.admin ? allBlogs : allBlogs.filter(({ published }) => published)
         if (this.searchText) {
           return blogs.filter(({ author, title, keywords }) => {
             let searchTextArr = this.searchText.split(' '),
@@ -59,11 +58,6 @@
       user() {
         return this.$store.state.user
       }
-    },
-    created() {
-      this.$store.dispatch('getBlogs').then(() => {
-        // console.log(this.$store.state.allBlogs.map(blog => blog.keywords))
-      })
     },
     methods: {
       strip(str) {

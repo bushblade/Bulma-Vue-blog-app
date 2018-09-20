@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <transition tag="div" 
-      mode="out-in" 
-      enter-active-class="animated fadeIn faster" 
-      leave-active-class="animated fadeOut faster">
+    <transition tag="div" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
       <router-view @click.native="closeNav" />
     </transition>
   </div>
@@ -12,7 +9,6 @@
 
 <script>
   import Navbar from '@/components/Navbar'
-  import { auth, db } from '@/firebase/init'
 
   export default {
     components: {
@@ -27,6 +23,9 @@
     },
     created() {
       this.$store.dispatch('watchAuthState')
+      if (this.$store.state.allBlogs.length === 0) {
+        this.$store.dispatch('getBlogs')
+      }
     }
 
   }
