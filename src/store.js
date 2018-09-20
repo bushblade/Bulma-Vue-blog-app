@@ -9,15 +9,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {
-      name: null
+      name: null,
+      admin: false
     },
     allBlogs: []
   },
   mutations: {
     setBlogs: (state, { blogs }) => state.allBlogs = blogs,
-    setUser: ({ user }, { name }) => {
+    setUser: ({ user }, { name = null, admin = false }) =>{
       user.name = name
-      console.log(user.name)
+      user.admin = admin
     }
   },
   actions: {
@@ -39,16 +40,19 @@ export default new Vuex.Store({
     login: ({ commit }, { email, password }) => {
       auth.signInWithEmailAndPassword(email, password)
         .then(cred => {
-          let userId = cred.user.uid
-          console.log(userId)
-          db.collection('users').get().then(snapshot => {
-            let user = snapshot.docs.find(doc => doc.id === userId)
-            console.log(user.data())
-            commit('setUser', user.data())            
+          db.collection('users').doc(cred.user.uid).then(res => {
+            commit('setUser', res.data())
           })
-        }).catch(err => {
-          console.log(err)
-        })
+        }).catch(err => console.log(err))
+    },
+    watchAuthState: ({ commit }) => {
+      auth.onAuthStateChanged(user => {
+        let userData = {name: null, admin: false}
+        db.collection('users').doc(user.uid).get().then(res => {
+          userData = res.data()
+          commit('setUser', userData)
+        }).catch(err => console.log(err))
+      })
     }
   },
   modules: {
