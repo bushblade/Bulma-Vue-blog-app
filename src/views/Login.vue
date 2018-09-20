@@ -1,8 +1,8 @@
 <template>
   <div class="container login">
     <form>
-      <div class="columns">
-        <div class="column is-half is-offset-one-quarter">
+      <div class="columns is-centered">
+        <div class="column is-5">
           <br>
           <div class="field">
             <label class="label">Email</label>
@@ -19,9 +19,13 @@
           <div class="field">
             <button class="button is-primary is-fullwidth" @click.prevent="submit">Submit</button>
           </div>
-          <p class="has-text-danger" v-if="feedback">
-            {{ feedback }}
-          </p>
+          <transition tag="div" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
+            <article class="message" :class="style" v-if="feedback">
+              <div class="message-body">
+                {{ feedback }}
+              </div>
+            </article>
+          </transition>
         </div>
       </div>
     </form>
@@ -37,18 +41,35 @@
       return {
         email: null,
         password: null,
-        feedback: null
+        feedback: null,
+        style: null
       }
     },
     methods: {
       submit() {
-       auth.signInWithEmailAndPassword(this.email, this.password)
-       .then(res => {
-         this.feedback = null
-         this.$router.push('/blog-home')
-       })
-       .catch(err => this.feedback = err.message)
+        this.feedback = null
+        if (this.email && this.password) {
+          auth.signInWithEmailAndPassword(this.email, this.password)
+            .then(res => {
+              this.feedback = 'Success!'
+              this.style = 'is-success'
+              setTimeout(() => this.$router.push('/blog-home'), 1500)
+            })
+            .catch(err => {
+              this.feedback = err.message
+              this.style = 'is-danger'
+            })
+        } else {
+          this.feedback = 'Fill out both fields'
+          this.style = 'is-danger'
+        }
       }
     }
   }
 </script>
+
+<style>
+  .login {
+    margin-top: 3em;
+  }
+</style>
