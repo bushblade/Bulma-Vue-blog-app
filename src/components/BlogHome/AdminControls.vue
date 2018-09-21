@@ -36,7 +36,6 @@
         db.collection('blogs').doc(id).update({ published: checked })
           .then(() => {
             console.log(`Blog ${id} published state is ${checked}`)
-            this.$store.dispatch('getBlogs')
           })
       },
       deleteBlog(e, { id }) {
@@ -44,7 +43,6 @@
           db.collection('blogs').doc(id).delete()
             .then(() => {
               console.log(`blog with id ${id} was deleted`)
-              this.$store.dispatch('getBlogs')
             })
         }
       },

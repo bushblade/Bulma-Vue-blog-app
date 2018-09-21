@@ -17,7 +17,7 @@ export default new Vuex.Store({
   },
   actions: {
     getBlogs: state => {
-      db.collection('blogs').get().then(rawBlogs => {
+      db.collection('blogs').onSnapshot(rawBlogs => {
         let blogs = rawBlogs.docs.map(doc => {
             let blogData = doc.data()
             blogData.id = doc.id
@@ -29,6 +29,7 @@ export default new Vuex.Store({
             return bDate - aDate
           })
         state.commit('setBlogs', { blogs })
+        console.log('updating blogs')
       })
     }
   },
