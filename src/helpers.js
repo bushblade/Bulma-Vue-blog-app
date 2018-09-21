@@ -36,11 +36,13 @@ export const validateImage = src => {
 }
 
 export const createBlogToPublish = newBlog => {
-  const toPublish = {}
-  Object.keys(newBlog).forEach((key, indx) => {
-    indx < 4 ?
-      toPublish[key] = newBlog[key].value :
-      toPublish[key] = newBlog[key]
-  })
+  const toPublish = {},
+    avoidKey = ['docID', 'isEditing', 'valid']
+  Object.keys(newBlog).filter(k => !avoidKey.includes(k))
+    .forEach((key, indx) => {
+      indx < 4 ?
+        toPublish[key] = newBlog[key].value :
+        toPublish[key] = newBlog[key]
+    })
   return toPublish
 }
