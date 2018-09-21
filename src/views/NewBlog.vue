@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-8 is-offset-2">
-        <h1 class="is-size-1 has-text-centered">Create a new blog post</h1>
+        <h1 class="is-size-1 has-text-centered">{{ editOrNew }}</h1>
       </div>
     </div>
     <div class="columns">
@@ -33,11 +33,6 @@
 
   export default {
     name: 'NewBlog',
-    data() {
-      return {
-
-      }
-    },
     components: {
       Inputs,
       Keywords,
@@ -48,6 +43,11 @@
       titleImagePreview() {
         let preview = this.$store.state.newBlog.titleImage.value 
         return validateImage(preview) > 0 ? preview : 'https://via.placeholder.com/1000x700'
+      },
+      editOrNew(){
+        return this.$store.state.newBlog.isEditing ?
+        'Edit blog post':
+        'Create a new blog post'
       }
     }
   }

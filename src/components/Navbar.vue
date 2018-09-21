@@ -15,13 +15,15 @@
         </div>
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable" v-if="userLoggedIn">
+
             <a class="navbar-link">Admin</a>
             <div class="navbar-dropdown">
-              <router-link to="/new-blog" class="navbar-item" @click.native="closeNav">
-                Create new blog post
+              <router-link :to="editOrNewLink" class="navbar-item" @click.native="closeNav">
+                {{ editOrNew }}
               </router-link>
               <a class="navbar-item" @click="logOut">Log Out</a>
             </div>
+
           </div>
           <router-link class="navbar-item" to="/login" @click.native="closeNav" v-else>Login</router-link>
         </div>
@@ -50,6 +52,17 @@
       },
       userLoggedIn() {
         return this.$store.state.user.name.length > 0
+      },
+      editOrNew(){
+        return this.$store.state.newBlog.isEditing ?
+        'Edit blog post':
+        'Create a new blog post'
+      },
+      editOrNewLink(){
+        let link = this.$store.state.newBlog.slug
+        return this.$store.state.newBlog.isEditing ?
+        `/${link}/edit`:
+        '/new-blog'
       }
     },
     methods: {

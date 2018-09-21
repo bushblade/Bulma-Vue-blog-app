@@ -57,10 +57,12 @@
       if (!this.$store.state.newBlog.date.value) {
         this.$store.commit('defaultDate')
       }
-      this.$store.commit('update', {
-        property: 'author',
-        value: this.$store.state.user.name
-      })
+      if (!this.$store.state.newBlog.author.value) {
+        this.$store.commit('update', {
+          property: 'author',
+          value: this.$store.state.user.name
+        })
+      }
     }
   }
 </script>

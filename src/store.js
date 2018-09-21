@@ -4,6 +4,7 @@ import { db } from '@/firebase/init'
 import { navstate } from '@/storeModules/navstate'
 import { newBlog } from '@/storeModules/newBlog'
 import { user } from '@/storeModules/user'
+import { defaultBlog } from '@/storeModules/defaultBlog'
 
 Vue.use(Vuex)
 
@@ -34,6 +35,7 @@ export default new Vuex.Store({
   modules: {
     navstate,
     newBlog,
-    user
+    user,
+    defaultBlog
   }
 })

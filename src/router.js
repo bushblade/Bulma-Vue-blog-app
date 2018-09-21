@@ -11,9 +11,11 @@ import { auth } from '@/firebase/init'
 Vue.use(Router)
 
 const router = new Router({
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
   mode: 'history',
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'Home',
       component: Home
@@ -42,6 +44,14 @@ const router = new Router({
       component: Login
     },
     {
+      path: '/:blog_slug/edit',
+      name: 'EditBlog',
+      component: NewBlog,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/:blog_slug',
       name: 'Blog',
       component: Blog
@@ -51,7 +61,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(path => path.meta.requiresAuth)) {
-    auth.currentUser ? next() : next({name: 'Login'})
+    auth.currentUser ? next() : next({ name: 'Login' })
   } else {
     next()
   }

@@ -6,9 +6,9 @@ export const user = {
     admin: false
   },
   mutations: {
-    setUser: (state, { name, admin }) =>{
-      state.name = name
-      state.admin = admin
+    setUser: (context, { name, admin }) =>{
+      context.name = name
+      context.admin = admin
     }
   },
   actions: {

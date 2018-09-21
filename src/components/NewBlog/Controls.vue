@@ -8,9 +8,7 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <span class="button is-small is-primary" @click="publishBlog">Publish</span>
-          </div>
+          <button class="button is-small is-primary" @click="publishBlog">Publish</button>
         </div>
       </div>
     </div>
@@ -29,13 +27,14 @@
     },
     methods: {
       publishBlog() {
-        this.$store.commit('validateBlog', { published: true })
-        if (this.$store.state.newBlog.valid) {
-          const toPublish = createBlogToPublish(this.$store.state.newBlog)
+        const { state, commit } = this.$store
+        commit('validateBlog', { published: true })
+        if (state.newBlog.valid) {
+          const toPublish = createBlogToPublish(state.newBlog)
           db.collection('blogs').add(toPublish)
             .then(res => {
-              this.$store.commit('resetNewBlog')
-              this.$router.push(`${toPublish.slug}`)
+              commit('resetNewBlog', state.defaultBlog)
+              this.$router.push('/blog-home')
             })
             .catch(err => console.log(err))
         }

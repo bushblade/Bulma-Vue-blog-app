@@ -9,13 +9,12 @@
     </div>
     <div class="level-right">
       <div class="level-item">
-        <button class="button is-danger is-small is-rounded tooltip" data-tooltip="Delete blog from database"
-          @click="deleteBlog($event, blog)">
+        <button class="button is-danger is-small is-rounded tooltip" data-tooltip="Delete blog from database" @click="deleteBlog($event, blog)">
           <i class="material-icons">delete</i>
         </button>
       </div>
       <div class="level-item">
-        <button class="button is-warning is-small is-rounded tooltip" data-tooltip="Edit blog">
+        <button class="button is-warning is-small is-rounded tooltip" data-tooltip="Edit blog" @click="editBlog($event, {slug: blog.slug, id:blog.id})">
           <i class="material-icons">edit</i>
         </button>
       </div>
@@ -40,14 +39,25 @@
             this.$store.dispatch('getBlogs')
           })
       },
-      deleteBlog(e, { id }){
-        if (confirm('Are you sure you want to permanently delete this blog?')){
+      deleteBlog(e, { id }) {
+        if (confirm('Are you sure you want to permanently delete this blog?')) {
           db.collection('blogs').doc(id).delete()
-          .then(() => {
-            console.log(`blog with id ${id} was deleted`)
-            this.$store.dispatch('getBlogs')
-          })
+            .then(() => {
+              console.log(`blog with id ${id} was deleted`)
+              this.$store.dispatch('getBlogs')
+            })
         }
+      },
+      editBlog(e, { slug, id }) {
+        const { state, commit } = this.$store
+        db.collection('blogs').doc(id).get()
+          .then(doc => {
+            let document = doc.data()
+            // need to check if a new blog is being worked on
+            commit('resetNewBlog', state.defaultBlog)
+            commit('setUpEditMode', { doc: document, id })
+            this.$router.push(`/${slug}/edit`)
+          })
       }
     }
   }

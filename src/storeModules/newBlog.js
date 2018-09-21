@@ -25,7 +25,9 @@ export const newBlog = {
     slug: null,
     valid: false,
     published: false,
-    timeStamp: null
+    timeStamp: null,
+    isEditing: false,
+    docID: null
   },
   mutations: {
     update: (state, { property, value }) => {
@@ -50,7 +52,7 @@ export const newBlog = {
     updateContent: (state, payload) => {
       state.content = payload
     },
-    validateBlog: (state, { published = false}) => {
+    validateBlog: (state, { published = false }) => {
       let toValidate = Object.keys(state).filter((key, indx) => indx < 4)
       if (toValidate.every(key => state[key].value)) {
         state.valid = true
@@ -64,17 +66,18 @@ export const newBlog = {
         })
       }
     },
-    resetNewBlog: state => {
-      for (let key in state){
-        if (state[key].value) state[key].value = null
-        else state[key] = null
+    resetNewBlog: (state, payload) => {
+      Object.keys(state)
+      .forEach(key => state[key] = payload[key])
+    },
+    setUpEditMode: (state, { doc, id }) => {
+      for (let key in state) {
+        state[key] !== null && state[key].hasOwnProperty('value') ?
+          state[key].value = doc[key] :
+          state[key] = doc[key]
       }
-      state.keywords = ''
-      state.published = false
+      state.docID = id
+      state.isEditing = true
     }
-  },
-  actions: {
-
-
   }
 }

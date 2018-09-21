@@ -37,12 +37,10 @@ export const validateImage = src => {
 
 export const createBlogToPublish = newBlog => {
   const toPublish = {}
-  for (let key in newBlog) {
-    if (newBlog[key].value) {
-      toPublish[key] = newBlog[key].value
-    } else {
+  Object.keys(newBlog).forEach((key, indx) => {
+    indx < 4 ?
+      toPublish[key] = newBlog[key].value :
       toPublish[key] = newBlog[key]
-    }
-  }
+  })
   return toPublish
 }

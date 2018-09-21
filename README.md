@@ -16,6 +16,7 @@ npm run build
 ```
 
 ### to do next
+* watch firestore for changes to blogs
 * publish or save new blog
 * improve handling blurb text
 * admin routes and login
