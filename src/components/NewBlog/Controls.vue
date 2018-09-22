@@ -8,9 +8,14 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <!-- add in published toggle checkbox -->
-          <!-- change the button to save or update -->
-          <button class="button is-small is-primary" @click="publishBlog">Publish</button>
+          <input id="published-toggle" type="checkbox" class="switch is-success is-thin" :checked="blog.published" @input="togglePublished">
+          <label for="published-toggle">{{ blog.published ? 'Published' : 'Not published' }}</label>
+        </div>
+        <div class="navbar-item">
+          <button class="button is-small is-primary"
+           @click="publishOrUpdate">
+           {{ blog.published ? 'Publish' : 'Save' }}
+           </button>
         </div>
       </div>
     </div>
@@ -27,10 +32,15 @@
     components: {
       CEControls
     },
+    computed: {
+      blog() {
+        return this.$store.state.newBlog
+      }
+    },
     methods: {
       publishBlog() {
         const { state, commit } = this.$store
-        commit('validateBlog', { published: true })
+        commit('validateBlog')
         if (state.newBlog.valid) {
           const toPublish = createBlogToPublish(state.newBlog)
           db.collection('blogs').add(toPublish)
@@ -40,6 +50,27 @@
             })
             .catch(err => console.log(err))
         }
+      },
+      update() {
+        const { state, commit } = this.$store
+        commit('validateBlog')
+        if (state.newBlog.valid) {
+          const toUpdate = createBlogToPublish(state.newBlog)
+          db.collection('blogs').doc(state.newBlog.docID).set(toUpdate)
+          .then(res => {
+            commit('resetNewBlog', state.defaultBlog)
+            this.$router.push(`/${toUpdate.slug}`)
+          })
+          .catch(err => console.log(err))
+        }
+      },
+      togglePublished() {
+        this.$store.commit('togglePublished')
+      },
+      publishOrUpdate(){
+        this.$store.state.newBlog.isEditing ?
+        this.update() :
+        this.publishBlog()
       }
     }
   }

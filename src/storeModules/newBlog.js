@@ -52,11 +52,11 @@ export const newBlog = {
     updateContent: (state, payload) => {
       state.content = payload
     },
-    validateBlog: (state, { published = false }) => {
+    togglePublished: state => state.published = !state.published,
+    validateBlog: (state) => {
       let toValidate = Object.keys(state).filter((key, indx) => indx < 4)
       if (toValidate.every(key => state[key].value)) {
         state.valid = true
-        state.published = published
       } else {
         toValidate.forEach(key => {
           if (state[key].value === null) {
