@@ -70,4 +70,8 @@
   .admin-controls .material-icons {
     font-size: 1.5em;
   }
+
+  .admin-controls {
+    background-color: whitesmoke;
+  }
 </style>

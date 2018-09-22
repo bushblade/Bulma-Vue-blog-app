@@ -17,9 +17,7 @@
             <!-- <p>{{ strip(blog.content) }}...</p> -->
             <router-link :to="blog.slug"><span class="tag is-link">Read More</span></router-link>
           </div>
-          <div class="card-footer" v-if="user.admin">
-            <AdminControls :blog="blog" />
-          </div>
+            <AdminControls v-if="user.admin" :blog="blog" />
         </div>
       </div>
     </transition-group>
@@ -84,12 +82,12 @@
 
   .blogs .blog-card {
     transition: all 0.2s ease-in-out;
-    box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.1);
   }
 
   .blogs .blog-card:hover {
     transform: scale(1.03) translateY(-2px);
-    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.2);
   }
 
   .card-animation-enter,
