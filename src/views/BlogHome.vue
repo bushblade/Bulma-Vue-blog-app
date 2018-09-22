@@ -84,11 +84,12 @@
 
   .blogs .blog-card {
     transition: all 0.2s ease-in-out;
+    box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2);
   }
 
   .blogs .blog-card:hover {
     transform: scale(1.03) translateY(-2px);
-    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 6px 12px 2px rgba(0, 0, 0, 0.3);
   }
 
   .card-animation-enter,

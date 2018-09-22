@@ -8,6 +8,8 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
+          <!-- add in published toggle checkbox -->
+          <!-- change the button to save or update -->
           <button class="button is-small is-primary" @click="publishBlog">Publish</button>
         </div>
       </div>

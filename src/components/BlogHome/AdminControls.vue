@@ -9,13 +9,13 @@
     </div>
     <div class="level-right">
       <div class="level-item">
-        <button class="button is-danger is-small is-rounded tooltip" data-tooltip="Delete blog from database" @click="deleteBlog($event, blog)">
-          <i class="material-icons">delete</i>
+        <button class="button is-danger is-small tooltip" data-tooltip="Delete blog from database" @click="deleteBlog($event, blog)">
+          <span class="icon"><i class="fas fa-trash"></i></span>
         </button>
       </div>
       <div class="level-item">
-        <button class="button is-warning is-small is-rounded tooltip" data-tooltip="Edit blog" @click="editBlog($event, {slug: blog.slug, id:blog.id})">
-          <i class="material-icons">edit</i>
+        <button class="button is-warning is-small tooltip" data-tooltip="Edit blog" @click="editBlog($event, {slug: blog.slug, id:blog.id})">
+          <span class="icon"><i class="fas fa-pen"></i></span>
         </button>
       </div>
 
