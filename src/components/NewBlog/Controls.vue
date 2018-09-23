@@ -12,10 +12,9 @@
           <label for="published-toggle">{{ blog.published ? 'Published' : 'Not published' }}</label>
         </div>
         <div class="navbar-item">
-          <button class="button is-small is-primary"
-           @click="publishOrUpdate">
-           {{ blog.published ? 'Publish' : 'Save' }}
-           </button>
+          <button class="button is-small is-primary" @click="publishOrUpdate">
+            {{ blog.published ? 'Publish' : 'Save' }}
+          </button>
         </div>
       </div>
     </div>
@@ -24,7 +23,7 @@
 
 <script>
   import { db } from '@/firebase/init'
-  import { createBlogToPublish } from '@/helpers'
+  import { createBlogToPublish, defaultBlog } from '@/helpers'
   import CEControls from './CEControls'
 
   export default {
@@ -38,39 +37,30 @@
       }
     },
     methods: {
-      publishBlog() {
-        const { state, commit } = this.$store
-        commit('validateBlog')
-        if (state.newBlog.valid) {
-          const toPublish = createBlogToPublish(state.newBlog)
-          db.collection('blogs').add(toPublish)
-            .then(res => {
-              commit('resetNewBlog', state.defaultBlog)
-              this.$router.push('/blog-home')
-            })
-            .catch(err => console.log(err))
-        }
+      publishBlog(payload) {
+        return db.collection('blogs')
+          .add(payload)
       },
-      update() {
-        const { state, commit } = this.$store
-        commit('validateBlog')
-        if (state.newBlog.valid) {
-          const toUpdate = createBlogToPublish(state.newBlog)
-          db.collection('blogs').doc(state.newBlog.docID).set(toUpdate)
-          .then(res => {
-            commit('resetNewBlog', state.defaultBlog)
-            this.$router.push(`/${toUpdate.slug}`)
-          })
-          .catch(err => console.log(err))
-        }
+      update(payload) {
+        return db.collection('blogs')
+          .doc(this.$store.state.newBlog.docID)
+          .set(payload)
       },
       togglePublished() {
         this.$store.commit('togglePublished')
       },
-      publishOrUpdate(){
-        this.$store.state.newBlog.isEditing ?
-        this.update() :
-        this.publishBlog()
+      publishOrUpdate() {
+        const { state: { newBlog }, commit } = this.$store
+        commit('validateBlog')
+        if (newBlog.valid) {
+          let payload = createBlogToPublish(newBlog)
+          let fn = newBlog.isEditing ? this.update : this.publishBlog
+          fn(payload).then(res => {
+              commit('resetNewBlog', defaultBlog())
+              this.$router.push(`/${payload.slug}`)
+            })
+            .catch(err => console.log(err))
+        }
       }
     }
   }
