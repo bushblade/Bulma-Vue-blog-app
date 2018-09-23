@@ -8,7 +8,7 @@
         <input class="input" type="text" placeholder="Image URL" :value="titleImage.value" @input="update" :class="validClasses(titleImage)">
       </div>
     </div>
-    <p v-if="titleImage.feedback" class="help is-danger has-text-centered">{{ titleImage.feedback }}</p>
+    <p v-if="titleImage.feedback" class="help is-danger has-text-right">{{ titleImage.feedback }}</p>
   </div>
 </template>
 
