@@ -1,10 +1,7 @@
 <template>
   <div class="column content-editable">
-    <div class="card">
-      <header class="card-header">
-      </header>
-      <div id="content-edit" class="card-content content" contenteditable="true" @input="updateContent">       
-      </div>
+    <label class="label">Create your content</label> 
+    <div id="content-edit" class="box content" contenteditable="true" @input="updateContent">
     </div>
   </div>
 </template>
@@ -32,12 +29,8 @@
 </script>
 
 <style>
-  .content-editable .card-content {
+  #content-edit {
+    margin-bottom: 40px;
     min-height: 400px;
   }
-
-  .content-editable .card {
-    margin-bottom: 40px;
-  }
 </style>
-
