@@ -2,7 +2,7 @@
   <div class="level is-mobile admin-controls">
     <div class="level-left">
       <div class="level-item">
-        <input :id="blog.id" type="checkbox" class="switch is-success is-thin" :checked="blog.published" @input="togglePublished($event, blog)">
+        <input :id="blog.id" type="checkbox" class="switch is-success is-rounded is-outlined" :checked="blog.published" @input="togglePublished($event, blog)">
         <label :for="blog.id">{{ blog.published ? 'Published' : 'Not published' }}</label>
       </div>
 

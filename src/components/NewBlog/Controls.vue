@@ -8,10 +8,10 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <input id="published-toggle" type="checkbox" class="switch is-success is-thin" :checked="blog.published" @input="togglePublished">
-          <label for="published-toggle">{{ blog.published ? 'Published' : 'Not published' }}</label>
-        </div>
-        <div class="navbar-item">
+          <span class="publish-toggle">
+            <input id="published-toggle" type="checkbox" class="switch is-primary is-rounded is-outlined" :checked="blog.published" @input="togglePublished">
+            <label for="published-toggle">{{ blog.published ? 'Published' : 'Not published' }}</label>
+          </span>
           <button class="button is-small is-primary" @click="publishOrUpdate">
             {{ blog.published ? 'Publish' : 'Save' }}
           </button>
@@ -67,5 +67,8 @@
 </script>
 
 <style>
-
+  .controls .publish-toggle {
+    margin: 0 1em;
+    color: whitesmoke;
+  }
 </style>
