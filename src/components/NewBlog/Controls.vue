@@ -10,10 +10,10 @@
         <div class="navbar-item">
           <span class="publish-toggle">
             <input id="published-toggle" type="checkbox" class="switch is-primary is-rounded is-outlined" :checked="blog.published" @input="togglePublished">
-            <label for="published-toggle">{{ blog.published ? 'Published' : 'Not published' }}</label>
+            <label for="published-toggle">{{ blog.published ? 'To publish' : `Don't publish` }}</label>
           </span>
-          <button class="button is-small is-primary" @click="publishOrUpdate">
-            {{ blog.published ? 'Publish' : 'Save' }}
+          <button class="button is-outlined is-primary" @click="publishOrUpdate">
+            {{ publishButtonText }}
           </button>
         </div>
       </div>
@@ -34,6 +34,16 @@
     computed: {
       blog() {
         return this.$store.state.newBlog
+      },
+      publishButtonText() {
+        const { state: { newBlog: { published, isEditing } } } = this.$store
+        if (isEditing){
+          return 'Update blog'
+        } else if (published){
+          return 'Publish now'
+        } else {
+          return 'Save & exit'
+        }
       }
     },
     methods: {
