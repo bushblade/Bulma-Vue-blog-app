@@ -36,15 +36,14 @@ export const validateImage = src => {
 }
 
 export const createBlogToPublish = newBlog => {
-  const toPublish = {},
-    avoidKey = ['docID', 'isEditing', 'valid']
-  Object.keys(newBlog).filter(k => !avoidKey.includes(k))
-    .forEach(key => {
+  const avoidKey = ['docID', 'isEditing', 'valid']
+  return Object.keys(newBlog).filter(k => !avoidKey.includes(k))
+    .reduce((obj, key) => {
       newBlog[key] !== null && newBlog[key].hasOwnProperty('value') ?
-        toPublish[key] = newBlog[key].value :
-        toPublish[key] = newBlog[key]
-    })
-  return toPublish
+        obj[key] = newBlog[key].value :
+        obj[key] = newBlog[key]
+        return obj
+    }, {})
 }
 
 export const defaultBlog = () => ({
