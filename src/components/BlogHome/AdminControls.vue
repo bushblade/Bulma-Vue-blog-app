@@ -25,6 +25,7 @@
 
 <script>
   import { db, auth } from '@/firebase/init'
+  import { defaultBlog } from '@/helpers'
 
   export default {
     name: 'AdminControls',
@@ -51,11 +52,23 @@
         db.collection('blogs').doc(id).get()
           .then(doc => {
             let document = doc.data()
-            // need to check if a new blog is being worked on
-            commit('resetNewBlog', state.defaultBlog)
-            commit('setUpEditMode', { doc: document, id })
-            this.$router.push(`/${slug}/edit`)
+            let question = `You have unsaved work in the editor, editing a blog now will overwrite your unsaved work. Are you sure you want to continue?`
+            const proceed = () => {
+              commit('resetNewBlog', defaultBlog())
+              commit('setUpEditMode', { doc: document, id })
+              this.$router.push(`/${slug}/edit`)
+            }
+            if (this.checkBlogState()) {
+              proceed()
+            } else if (confirm(question)) {
+              proceed()
+            }
           })
+      },
+      checkBlogState() {
+        const { state: { newBlog: { isEditing, timeStamp, title, titleImage, content } } } = this.$store
+        let arr = [isEditing, timeStamp, title.value, titleImage.value, content]
+        return arr.every(item => item === null || item === false)
       }
     }
   }
