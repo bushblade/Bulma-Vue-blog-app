@@ -17,6 +17,4 @@ npm run build
 
 ### to do next
 * improve handling blurb text
-* admin routes and login
 * upload media
-* prevent duplicate blog titles from uploading
