@@ -67,8 +67,7 @@
       },
       checkBlogState() {
         const { state: { newBlog: { isEditing, timeStamp, title, titleImage, content } } } = this.$store
-        let arr = [isEditing, timeStamp, title.value, titleImage.value, content]
-        return arr.every(item => item === null || item === false)
+        return [isEditing, timeStamp, title.value, titleImage.value, content].every(item => !item)
       }
     }
   }
