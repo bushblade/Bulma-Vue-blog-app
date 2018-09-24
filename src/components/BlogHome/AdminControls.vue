@@ -49,21 +49,21 @@
       },
       editBlog(e, { slug, id }) {
         const { state, commit } = this.$store
-        db.collection('blogs').doc(id).get()
-          .then(doc => {
-            let document = doc.data()
-            let question = `You have unsaved work in the editor, editing a blog now will overwrite your unsaved work. Are you sure you want to continue?`
-            const proceed = () => {
+        let question = `You have unsaved work in the editor, editing a blog now will overwrite your unsaved work. Are you sure you want to continue?`
+        const proceed = () => {
+          db.collection('blogs').doc(id).get()
+            .then(res => {
+              let doc = res.data()
               commit('resetNewBlog', defaultBlog())
-              commit('setUpEditMode', { doc: document, id })
+              commit('setUpEditMode', { doc, id })
               this.$router.push(`/${slug}/edit`)
-            }
-            if (this.checkBlogState()) {
-              proceed()
-            } else if (confirm(question)) {
-              proceed()
-            }
-          })
+            }).catch(err => console.log(err))
+        }
+        if (this.checkBlogState()) {
+          proceed()
+        } else if (confirm(question)) {
+          proceed()
+        }
       },
       checkBlogState() {
         const { state: { newBlog: { isEditing, timeStamp, title, titleImage, content } } } = this.$store
