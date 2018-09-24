@@ -52,7 +52,7 @@
     methods: {
       discardExit() {
         const { commit } = this.$store
-        let msg = 'Discard all changes made?'
+        let msg = 'Discard any changes made?'
         if (confirm(msg)) {
           commit('resetNewBlog', defaultBlog())
           this.$router.push('/blog-home')
