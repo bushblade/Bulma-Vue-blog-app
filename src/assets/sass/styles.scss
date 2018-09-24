@@ -22,6 +22,11 @@ $beige-lighter: #EFF0EB;
 // $input-border-color: transparent;
 // $input-shadow: none;
 
+
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/bulma-switch/dist/css/bulma-switch.sass";
 @import "../../../node_modules/bulma-tooltip/dist/css/bulma-tooltip.sass";
+
+.columns {
+  margin: 0;
+}
