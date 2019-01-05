@@ -26,25 +26,24 @@
 </template>
 
 <script>
-  export default {
-    name: 'Blog',
-    blog: null,
-    computed: {
-      blog() {
-        return this.$store.state.allBlogs.find(blog => blog.slug === this.$route.params.blog_slug)
-      }
-    },
-    created() {
-      if (this.$store.state.allBlogs.length === 0) this.$store.dispatch('getBlogs')
+export default {
+  name: 'Blog',
+  computed: {
+    blog() {
+      return this.$store.state.allBlogs.find(blog => blog.slug === this.$route.params.blog_slug)
     }
+  },
+  created() {
+    if (this.$store.state.allBlogs.length === 0) this.$store.dispatch('getBlogs')
   }
+}
 </script>
 
 <style>
-  .blog-content p {
-    margin: 2em;
-  }
-  .blog-content img {
-    max-width: 80%;
-  }
+.blog-content p {
+  margin: 2em;
+}
+.blog-content img {
+  max-width: 80%;
+}
 </style>

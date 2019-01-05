@@ -6,6 +6,7 @@ import About from './views/About'
 import Blog from './views/Blog'
 import NewBlog from './views/NewBlog'
 import Login from './views/Login'
+import Media from './views/Media'
 import { auth } from '@/firebase/init'
 
 Vue.use(Router)
@@ -42,6 +43,14 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/media',
+      name: 'Media',
+      component: Media,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/:blog_slug/edit',

@@ -24,66 +24,88 @@
 </template>
 
 <script>
-  import { db, auth } from '@/firebase/init'
-  import { defaultBlog } from '@/helpers'
+import { db, auth } from '@/firebase/init'
+import { defaultBlog } from '@/helpers'
 
-  export default {
-    name: 'AdminControls',
-    props: {
-      blog: Object
+export default {
+  name: 'AdminControls',
+  props: {
+    blog: Object
+  },
+  methods: {
+    togglePublished(
+      {
+        target: { checked }
+      },
+      { id }
+    ) {
+      db.collection('blogs')
+        .doc(id)
+        .update({ published: checked })
+        .then(() => {
+          console.log(`Blog ${id} published state is ${checked}`)
+        })
     },
-    methods: {
-      togglePublished({ target: { checked } }, { id }) {
-        db.collection('blogs').doc(id).update({ published: checked })
+    deleteBlog(e, { id }) {
+      if (confirm('Are you sure you want to permanently delete this blog?')) {
+        db.collection('blogs')
+          .doc(id)
+          .delete()
           .then(() => {
-            console.log(`Blog ${id} published state is ${checked}`)
+            console.log(`blog with id ${id} was deleted`)
           })
-      },
-      deleteBlog(e, { id }) {
-        if (confirm('Are you sure you want to permanently delete this blog?')) {
-          db.collection('blogs').doc(id).delete()
-            .then(() => {
-              console.log(`blog with id ${id} was deleted`)
-            })
-        }
-      },
-      editBlog(e, { slug, id }) {
-        const { state, commit } = this.$store
-        let question = `You have unsaved work in the editor, editing a blog now will overwrite your unsaved work. Are you sure you want to continue?`
-        const proceed = () => {
-          db.collection('blogs').doc(id).get()
-            .then(res => {
-              let doc = res.data()
-              commit('resetNewBlog', defaultBlog())
-              commit('setUpEditMode', { doc, id })
-              this.$router.push(`/${slug}/edit`)
-            }).catch(err => console.log(err))
-        }
-        if (this.checkBlogState()) {
-          proceed()
-        } else if (confirm(question)) {
-          proceed()
-        }
-      },
-      checkBlogState() {
-        const { state: { newBlog: { isEditing, timeStamp, title, titleImage, content } } } = this.$store
-        return [isEditing, timeStamp, title.value, titleImage.value, content].every(item => !item)
       }
+    },
+    editBlog(e, { slug, id }) {
+      const { state, commit } = this.$store
+      let question = `You have unsaved work in the editor, editing a blog now will overwrite your unsaved work. Are you sure you want to continue?`
+      const proceed = () => {
+        db.collection('blogs')
+          .doc(id)
+          .get()
+          .then(res => {
+            let doc = res.data()
+            commit('resetNewBlog', defaultBlog())
+            commit('setUpEditMode', { doc, id })
+            this.$router.push(`/${slug}/edit`)
+          })
+          .catch(err => console.log(err))
+      }
+      if (this.checkBlogState()) {
+        proceed()
+      } else if (confirm(question)) {
+        proceed()
+      }
+    },
+    checkBlogState() {
+      const {
+        state: {
+          newBlog: { isEditing, timeStamp, title, titleImage, content }
+        }
+      } = this.$store
+      return [
+        isEditing,
+        timeStamp,
+        title.value,
+        titleImage.value,
+        content
+      ].every(item => !item)
     }
   }
+}
 </script>
 
 <style>
-  .admin-controls {
-    padding: 0.5em 1.5em;
-    width: 100%;
-  }
+.admin-controls {
+  padding: 0.5em 1.5em;
+  width: 100%;
+}
 
-  .admin-controls .material-icons {
-    font-size: 1.5em;
-  }
+.admin-controls .material-icons {
+  font-size: 1.5em;
+}
 
-  .admin-controls {
-    background-color: whitesmoke;
-  }
+.admin-controls {
+  background-color: whitesmoke;
+}
 </style>

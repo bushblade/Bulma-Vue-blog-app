@@ -16,5 +16,6 @@ npm run build
 ```
 
 ### to do next
+* pagination for blogs
 * improve handling blurb text
 * upload media

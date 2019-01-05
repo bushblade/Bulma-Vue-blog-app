@@ -21,6 +21,9 @@
               <router-link :to="editOrNewLink" class="navbar-item" @click.native="closeNav">
                 {{ editOrNew }}
               </router-link>
+              <router-link to="/media" class="navbar-item" @click.native="closeNav">
+                Media
+              </router-link>
               <a class="navbar-item" @click="logOut">Log Out</a>
             </div>
 
